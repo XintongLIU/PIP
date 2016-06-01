@@ -2,7 +2,7 @@
 
 1、首先将项目直接clone到workspace中</br>
 2、File -> New -> Dynamic Web Project</br>
-   输入项目名 bookstore</br>
+   输入项目名 PIP</br>
    取消 Use default location 的勾选，点击browse，选择刚才clone下来的文件夹</br>
 	注意：</br>
 		Target runtime选择 MyEclipse Generic Runtime for J2EE 1.3</br>
