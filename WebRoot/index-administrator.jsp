@@ -251,33 +251,33 @@ th {
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">姓名</label>
 									<div class="col-sm-6">
-										<input type="text" id="nameInput" name="input-normal"
+										<input type="text" id="nameInput" name="studentName"
 											class="form-control" placeholder="姓名">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">学号</label>
 									<div class="col-sm-6">
-										<input type="text" id="idInput" name="input-normal"
+										<input type="text" id="idInput" name="studentID"
 											class="form-control" placeholder="学号">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">班级</label>
 									<div class="col-sm-6">
-										<input type="text" id="classInput" name="input-normal"
+										<input type="text" id="classInput" name="studentClass"
 											class="form-control" placeholder="班级">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">组号</label>
 									<div class="col-sm-6">
-										<input type="text" id="groupInput" name="input-normal"
+										<input type="text" id="groupInput" name="teamID"
 											class="form-control" placeholder="组号">
 									</div>
 								</div>
 								<div class="col-sm-offset-4">
-									<a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()">添加</a>
+									<a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()" href="AddStudent">添加</a>
 								</div>
 							</form>
 						</div>
