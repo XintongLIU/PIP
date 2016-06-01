@@ -44,6 +44,14 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/pip/domain/News.hbm.xml</value>
+				<value>com/pip/domain/Address.hbm.xml</value>
+				<value>com/pip/domain/Admin.hbm.xml</value>
+				<value>com/pip/domain/Project.hbm.xml</value>
+				<value>com/pip/domain/ProjectScore.hbm.xml</value>
+				<value>com/pip/domain/Student.hbm.xml</value>
+				<value>com/pip/domain/Teacher.hbm.xml</value>
+				<value>com/pip/domain/Team.hbm.xml</value>
+				<value>com/pip/domain/TestCase.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -108,10 +116,16 @@
 		<property name="addressDAO" ref="addressDAO" />
 	</bean> 
 
+
 	<bean id="studentService" class="com.pip.service.impl.StudentServiceImpl">
 		<property name="studentDAO" ref="studentDAO"/>
 	</bean>
 	
+
 	
-	
+	<bean id="convertorService" class="com.pip.service.impl.ConvertorServiceImpl">
+		<property name="teamDAO" ref="teamDAO"/>
+		<property name="projectDAO" ref="projectDAO"/>
+	</bean>
+
 </beans>
