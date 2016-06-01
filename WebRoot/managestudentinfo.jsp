@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -212,17 +213,21 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>学生X</td>
-													<td>201321150X</td>
-													<td>2013212XXX</td>
-													<td>90</td>
+												<s:iterator value="studentList">
+													<tr>
+													<td>${studentName }</td>
+													<td>${studentClass }</td>
+													<td>${studentID }</td>
+													<td>${score }</td>
 													<td>
-													  <a class="btn btn-success" href="studentdetail.jsp#">
+													  <a class="btn btn-success" href="studentdetail.jsp#id=${studentID }">
 														<i class="fa fa-search-plus "></i>                                            
 													  </a>
 													</td>
 												</tr>
+												</s:iterator>
+											
+												
 											</tbody>
 										</table>
 									</div>

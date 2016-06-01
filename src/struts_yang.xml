@@ -5,7 +5,7 @@
 <struts>
 <constant name="struts.devMode" value="true" />
 <package name="yang" namespace="/" extends="struts-default">
-				<action name="hello" class="com.pip.action.HelloWorldAction">
+		<action name="hello" class="com.pip.action.HelloWorldAction">
 			<result>/success.jsp</result>
 		</action>
 

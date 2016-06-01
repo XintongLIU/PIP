@@ -75,15 +75,40 @@
  		<property name="sessionFactory" ref="sessionFactory" />    <!-- 除了action类是自动装配，其他的类都需要显示的写出注入 -->
 	</bean>
     
+    <bean id="adminDAO" class="com.pip.dao.impl.AdminDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="projectDAO" class="com.pip.dao.impl.ProjectDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+     <bean id="projectScoreDAO" class="com.pip.dao.impl.ProjectScoreDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="studentDAO" class="com.pip.dao.impl.StudentDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="teacherDAO" class="com.pip.dao.impl.TeacherDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="teamDAO" class="com.pip.dao.impl.TeamDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    
 	<bean id="helloWorldService" class="com.pip.service.impl.HelloWorldServiceImpl">
 		<property name="newsDao" ref="newsDao" />
 	</bean>     <!-- action默认是自动装配的 -->
 
-	<bean id="IAddressService" class="com.pip.service.impl.AddressServiceImpl">
+	<bean id="addressService" class="com.pip.service.impl.AddressServiceImpl">
 		<property name="addressDAO" ref="addressDAO" />
 	</bean> 
+
 	
-	<bean id="ITeacherService" class="com.pip.service.impl.TeacherServiceImpl">
-		<property name="teacherDao" ref="TeacherDAOImpl" /> 
-	</bean>
+	
+	
 </beans>
