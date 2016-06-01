@@ -4,43 +4,46 @@ import java.util.List;
 
 import com.pip.domain.Teacher;
 import com.pip.service.ITeacherService;
+import com.pip.dao.ITeacherDAO;
 import com.pip.dao.impl.TeacherDAOImpl;
 
 public class TeacherServiceImpl implements ITeacherService {
 
-	TeacherDAOImpl teacherDao;
+	ITeacherDAO teacherDAO;
 
 	@Override
 	public int insertTearcher(Teacher teacher) {
-		return (Integer)teacherDao.save(teacher);
+		return (Integer)teacherDAO.insertTeacher(teacher);
 	}
 
 	@Override
 	public void deleteTeacher(int id) {
-		teacherDao.deleteTeacher(teacherDao.findTeacherById(id));
+		teacherDAO.deleteTeacher(teacherDAO.findTeacherById(id));
 	}
 
 	@Override
 	public void updateTeacher(Teacher teacher) {
-		teacherDao.update(teacher);
+		teacherDAO.update(teacher);
 	}
 
 	@Override
 	public Teacher selectTeacher(int id) {
-		return teacherDao.findTeacherById(id);
+		return teacherDAO.findTeacherById(id);
 	}
 
 	@Override
 	public List<Teacher> showTeacherList() {	
-		return teacherDao.findAll();
+		return teacherDAO.findAll();
 	}
 
-	public TeacherDAOImpl getTeacherDao() {
-		return teacherDao;
+	public ITeacherDAO getTeacherDAO() {
+		return teacherDAO;
 	}
 
-	public void setTeacherDao(TeacherDAOImpl teacherDao) {
-		this.teacherDao = teacherDao;
+	public void setTeacherDAO(ITeacherDAO teacherDAO) {
+		this.teacherDAO = teacherDAO;
 	}
+
+
 
 }

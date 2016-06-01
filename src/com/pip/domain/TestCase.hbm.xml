@@ -5,7 +5,7 @@
 	<class name="TestCase" table="testCase">
 		<cache usage="read-write" /> <!-- 缓存 -->
 		<id name="testCaseID" column="testcaseID" type="int">
-			<generator class="increment"/>
+			<generator class="identity"/>
 		</id>
 		<property name="testCaseName" column="testcaseName" length="200"
 			type="string" />
