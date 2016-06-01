@@ -77,7 +77,10 @@ public class TeacherDAOImpl extends BaseDAOImpl<Teacher> implements ITeacherDAO{
 		}
 	}
 
-	
+	public Teacher findTeacherByName(String teacherName){
+		List<Teacher> list = super.find("from Teacher where teacherName = " + teacherName);
+		return list.get(0);
+	}
 
 	
 

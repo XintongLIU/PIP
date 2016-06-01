@@ -9,4 +9,5 @@ public interface ITeacherDAO {
 	public Teacher findTeacherById(int teacherID);		//通过teacherID查找Teacher信息
 	public boolean insertTeacher(Teacher teacher);			//插入Teacher信息
 	public boolean deleteTeacher(Teacher teacher);		//删除指定Teacher
+	public Teacher findTeacherByName(String teacherName);
 }

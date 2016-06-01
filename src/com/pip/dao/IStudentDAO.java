@@ -10,4 +10,5 @@ public interface IStudentDAO {
 	public Student findStudentById(int studentID);		//通过StudentID查找Student信息
 	public boolean insertStudent(Student student);			//插入Student信息
 	public boolean deleteStudent(Student student);		//删除指定Student
+	public Student findStudentByName(String studentName);	
 }
