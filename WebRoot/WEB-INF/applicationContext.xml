@@ -107,8 +107,10 @@
 	<bean id="addressService" class="com.pip.service.impl.AddressServiceImpl">
 		<property name="addressDAO" ref="addressDAO" />
 	</bean> 
+	
+	<bean id="convertorService" class="com.pip.service.impl.ConvertorServiceImpl">
+		<property name="teamDAO" ref="teamDAO"/>
+		<property name="projectDAO" ref="projectDAO"/>
+	</bean>
 
-	
-	
-	
 </beans>
