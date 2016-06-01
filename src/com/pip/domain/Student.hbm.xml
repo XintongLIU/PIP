@@ -12,7 +12,7 @@
 		<property name="projectID" column="projectID" type="int" />
 		<property name="score" column="score" type="int" />
 		<property name="teacherID" column="teacher_teacherID" type="int" />
-		<property name="studentIP" column="studentIP" length="45" type="string" />
+		<property name="loginTime" column="loginTime" />
 		<property name="teamID" column="team_teamID" type="int" />
 		<property name="studentClass" column="studenClass" length="45" type="string" />
 		<property name="numSPM" column="numSPM" type="int" />
