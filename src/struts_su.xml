@@ -7,5 +7,5 @@
 <package name="su" namespace="/" extends="struts-default">
 
 
-    </package>
+</package>
 </struts>
