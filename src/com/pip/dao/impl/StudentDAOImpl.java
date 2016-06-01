@@ -73,5 +73,11 @@ public class StudentDAOImpl extends BaseDAOImpl<Student> implements IStudentDAO{
 			return false;
 		}
 	}
+	
+	public List<Student> findStudentByTeamID(Integer teamID){
+		List<Student> list = new ArrayList<Student>();
+		list = super.find("from Student where teamID = " + teamID);
+		return list;
+	}
 
 }
