@@ -9,12 +9,12 @@ import com.pip.service.IStudentService;
 
 public class StudentServiceImpl implements IStudentService {
 
-	StudentDAOImpl studentDAO;
+	IStudentDAO studentDAO;
 	
 	@Override
 	public Integer insertStudent(Student student) {
 		// TODO Auto-generated method stub
-		return (Integer) studentDAO.save(student);
+		return (Integer) studentDAO.insertStudent(student);
 	}
 
 	@Override
@@ -42,13 +42,15 @@ public class StudentServiceImpl implements IStudentService {
 		return studentDAO.findAll();
 	}
 
-	public StudentDAOImpl getStudentDAO() {
+	public IStudentDAO getStudentDAO() {
 		return studentDAO;
 	}
 
-	public void setStudentDAO(StudentDAOImpl studentDAO) {
+	public void setStudentDAO(IStudentDAO studentDAO) {
 		this.studentDAO = studentDAO;
 	}
+
+
 
 
 
