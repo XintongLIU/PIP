@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.pip.dao.ITeamDAO;
+import com.pip.domain.Project;
 import com.pip.domain.Team;
 @Repository
 public class TeamDAOImpl extends BaseDAOImpl<Team> implements ITeamDAO{
@@ -73,6 +74,13 @@ public class TeamDAOImpl extends BaseDAOImpl<Team> implements ITeamDAO{
 			return false;
 		}
 		
+	}
+
+	@Override
+	public List<Team> findTeamByTeacherId(int teacherID) {
+		System.out.println("ProjectID " +teacherID);
+		List<Team> list = super.find("from Team where teacherID = " + teacherID);
+		return list;
 	}
 
 	

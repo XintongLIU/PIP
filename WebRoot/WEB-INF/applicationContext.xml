@@ -44,6 +44,14 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/pip/domain/News.hbm.xml</value>
+				<value>com/pip/domain/Address.hbm.xml</value>
+				<value>com/pip/domain/Admin.hbm.xml</value>
+				<value>com/pip/domain/Project.hbm.xml</value>
+				<value>com/pip/domain/ProjectScore.hbm.xml</value>
+				<value>com/pip/domain/Student.hbm.xml</value>
+				<value>com/pip/domain/Teacher.hbm.xml</value>
+				<value>com/pip/domain/Team.hbm.xml</value>
+				<value>com/pip/domain/TestCase.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
