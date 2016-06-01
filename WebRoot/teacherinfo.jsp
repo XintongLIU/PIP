@@ -57,7 +57,7 @@
 	rel="stylesheet" />
 <link href="assets/plugins/xcharts/css/xcharts.min.css" rel="stylesheet" />
 <link href="assets/plugins/morris/css/morris.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="assets/css/sweetalert.css">
 <!-- Theme CSS -->
 <link href="assets/css/jquery.mmenu.css" rel="stylesheet" />
 
@@ -388,7 +388,7 @@ th {
 	<script src="assets/plugins/raphael/js/raphael.min.js"></script>
 	<script src="assets/plugins/morris/js/morris.min.js"></script>
 	<script src="assets/plugins/gauge/js/gauge.min.js"></script>
-
+	<script src="assets/js/sweetalert.min.js"></script>
 	<!-- Theme JS -->
 	<script src="assets/js/jquery.mmenu.min.js"></script>
 	<script src="assets/js/core.min.js"></script>
@@ -407,7 +407,7 @@ th {
 			var nameTxt = document.getElementById("nameInput").value;
 			var classTxt = document.getElementById("classInput").value;
 			if (idTxt == "" || nameTxt == "" || classTxt == "") {
-				alert("请将所有信息输入完整！");
+				swal("注意!", "请将所有信息输入完整！", "error");
 				return;
 			}
 			//2创建tr
