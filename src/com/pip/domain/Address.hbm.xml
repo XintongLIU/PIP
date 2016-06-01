@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.buptsse.domain">
+	<class name="Address" table="address">
+		<cache usage="read-write" /> <!-- 缓存 -->
+		<id name="addressID" column="addressID" type="int">
+			<generator class="increment"/>
+		</id>
+		<property name="contentName" column="contentName" length="200" type="string" />
+		<property name="type" column="type" type="int" />
+		<property name="addressName" column="addressName" length="200" type="string" />
+		<property name="projectID" column="project_projectID" type="int" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.buptsse.domain">
+	<class name="Student" table="student">
+		<cache usage="read-write" /> <!-- 缓存 -->
+		<id name="studentID" column="studentID" type="int">
+			<generator class="increment"/>
+		</id>
+		<property name="studentName" column="studentName" length="20" type="string" />
+		<property name="password" column="password" length="45" type="string" />
+		<property name="projectID" column="projectID" type="int" />
+		<property name="score" column="score" type="int" />
+		<property name="teacherID" column="teacher_teacherID" type="int" />
+		<property name="studentIP" column="studentIP" length="45" type="string" />
+		<property name="teamID" column="team_teamID" type="int" />
+		<property name="studentClass" column="studenClass" length="45" type="string" />
+		<property name="numSPM" column="numSPM" type="int" />
+		<property name="workTime" column="worktime" type="int" />
+		
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.buptsse.domain">
+	<class name="Team" table="team">
+		<cache usage="read-write" /> <!-- 缓存 -->
+		<id name="teamID" column="teamID" type="int">
+			<generator class="increment"/>
+		</id>
+		<property name="teamName" column="teamName" length="45" type="string" />
+		<property name="projectID" column="project_projectID" type="int" />
+		<property name="teacherID" column="project_teacher_teacherID" type="int" />
+	</class>
+</hibernate-mapping>
