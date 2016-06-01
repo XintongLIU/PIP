@@ -44,6 +44,14 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/pip/domain/News.hbm.xml</value>
+				<value>com/pip/domain/Address.hbm.xml</value>
+				<value>com/pip/domain/Admin.hbm.xml</value>
+				<value>com/pip/domain/Project.hbm.xml</value>
+				<value>com/pip/domain/ProjectScore.hbm.xml</value>
+				<value>com/pip/domain/Student.hbm.xml</value>
+				<value>com/pip/domain/Teacher.hbm.xml</value>
+				<value>com/pip/domain/Team.hbm.xml</value>
+				<value>com/pip/domain/TestCase.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -70,21 +78,41 @@
     <bean id="newsDao" class="com.pip.dao.impl.NewsDaoImpl">
  		<property name="sessionFactory" ref="sessionFactory" />    <!-- 除了action类是自动装配，其他的类都需要显示的写出注入 -->
 	</bean>
-	
-	<bean id="addressDAO" class="com.pip.dao.impl.AddressDAOImpl">
- 		<property name="sessionFactory" ref="sessionFactory" />    <!-- 除了action类是自动装配，其他的类都需要显示的写出注入 -->
-	</bean>
+    <bean id="adminDAO" class="com.pip.dao.impl.AdminDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="projectDAO" class="com.pip.dao.impl.ProjectDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+     <bean id="projectScoreDAO" class="com.pip.dao.impl.ProjectScoreDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="studentDAO" class="com.pip.dao.impl.StudentDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="teacherDAO" class="com.pip.dao.impl.TeacherDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="teamDAO" class="com.pip.dao.impl.TeamDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
     
 	<bean id="helloWorldService" class="com.pip.service.impl.HelloWorldServiceImpl">
 		<property name="newsDao" ref="newsDao" />
 	</bean>     <!-- action默认是自动装配的 -->
 
-	<bean id="IAddressService" class="com.pip.service.impl.AddressServiceImpl">
-		<property name="addressDAO" ref="addressDAO" />
-	</bean> 
-	
 	<bean id="studentService" class="com.pip.service.impl.StudentServiceImpl">
 		<property name="studentDAO" ref="studentDAO" />
+	</bean>
+	<bean id="convertorService" class="com.pip.service.impl.ConvertorServiceImpl">
+		<property name="teamDAO" ref="teamDAO"/>
+		<property name="projectDAO" ref="projectDAO"/>
 	</bean>
 
 </beans>

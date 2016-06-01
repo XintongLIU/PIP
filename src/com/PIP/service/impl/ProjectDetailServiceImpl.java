@@ -5,9 +5,9 @@ import java.util.List;
 import com.pip.dao.IProjectScoreDAO;
 import com.pip.dao.impl.ProjectScoreDAOImpl;
 import com.pip.domain.ProjectScore;
-import com.pip.service.ProjectDetailService;
+import com.pip.service.IProjectDetailService;
 
-public class ProjectDetailServiceImpl implements ProjectDetailService {
+public class ProjectDetailServiceImpl implements IProjectDetailService {
 
 	//IOC DAO
 	ProjectScoreDAOImpl projectScoreDAO;

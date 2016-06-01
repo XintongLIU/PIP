@@ -5,7 +5,7 @@ import java.util.List;
 import com.pip.domain.Student;
 import com.pip.domain.Team;
 
-public interface TeamService {
+public interface ITeamService {
 	Integer insertTeam(Team team);
 	void deleteTeam(Integer teamID);
 	void updateTeam(Team team);

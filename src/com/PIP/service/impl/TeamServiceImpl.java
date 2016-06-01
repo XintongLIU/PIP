@@ -6,9 +6,9 @@ import com.pip.dao.impl.StudentDAOImpl;
 import com.pip.dao.impl.TeamDAOImpl;
 import com.pip.domain.Student;
 import com.pip.domain.Team;
-import com.pip.service.TeamService;
+import com.pip.service.ITeamService;
 
-public class TeamServiceImpl implements TeamService {
+public class TeamServiceImpl implements ITeamService {
 
 	//IOC Service
 	TeamDAOImpl teamDAO;
