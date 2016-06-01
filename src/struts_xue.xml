@@ -3,9 +3,14 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-<constant name="struts.devMode" value="true" />
-<package name="xue" namespace="/" extends="struts-default">
-
+	<constant name="struts.devMode" value="true" />
+	<package name="xue" namespace="/" extends="struts-default">
+		<action name="projectDetailStateShow" class="com.pip.action.ShowProjectDetailAction" method="showState">
+			<result name="success">/index-student.jsp</result>
+		</action>
+		<action name="projectDetailStatueAndScoreShow" class="com.pip.action.ShowProjectDetailAction" method="showStateAndScore">
+			<result name="success">/queryscore.jsp</result>
+		</action>
 
     </package>
 </struts>

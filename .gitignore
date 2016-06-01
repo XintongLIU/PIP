@@ -16,3 +16,5 @@ bin/
 **/META-INF
 .myumldata
 /build/
+
+src/struts_wei.xml

@@ -206,7 +206,12 @@
 												<tr>
 													<td>在编号为SPM-XXX的服务器上安装部署系统</td>
 													<td>
-														<span class="label label-success">成功</span>
+														<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">进行中</span>
+														</s:else>
 													</td>
 													<td>
 														<a class="btn btn-success" href="">
@@ -217,7 +222,12 @@
 												<tr>
 													<td>提交源程序，放到指定的目录：/SPM-组号</td>
 													<td>
-														<span class="label label-warning">进行中</span>
+														<s:if test="projectDetail[1] == 1">
+																<span class="label label-success">成功</span>
+															</s:if>
+															<s:else>
+																<span class="label label-warning">进行中</span>
+														</s:else>
 													</td>
 													<td>
 														<a class="btn btn-success" href="uploadfile.jsp">
@@ -228,7 +238,12 @@
 												<tr>
 													<td>随机选择5个功能测试用例</td>
 													<td>
-														<span class="label label-warning">进行中</span>
+														<s:if test="projectDetail[2] == 1">
+																<span class="label label-success">成功</span>
+															</s:if>
+															<s:else>
+																<span class="label label-warning">进行中</span>
+														</s:else>
 													</td>
 													<td>
 														<a class="btn btn-success" href="testcase.jsp">
@@ -239,7 +254,12 @@
 												<tr>
 													<td>随机选择5个性能测试用例</td>
 													<td>
-														<span class="label label-warning">进行中</span>
+														<s:if test="projectDetail[3] == 1">
+																<span class="label label-success">成功</span>
+															</s:if>
+															<s:else>
+																<span class="label label-warning">进行中</span>
+														</s:else>
 													</td>
 													<td>
 														<a class="btn btn-success" href="testcase.jsp">
@@ -250,7 +270,12 @@
 												<tr>
 													<td>随机选择1个压力测试用例</td>
 													<td>
-														<span class="label label-warning">进行中</span>
+														<s:if test="projectDetail[4] == 1">
+																<span class="label label-success">成功</span>
+															</s:if>
+															<s:else>
+																<span class="label label-warning">进行中</span>
+														</s:else>
 													</td>
 													<td>
 														<a class="btn btn-success" href="testcase.jsp">
@@ -261,7 +286,12 @@
 												<tr>
 													<td>提交需求文档、概要设计、详细设计，符合文件名字（BUPT-SPM-组号-SRS、BUPT-SPM-组号-HLD、BUPT-SPM-组号-DLD）、章节检查（参照模板）</td>
 													<td>
-														<span class="label label-warning">进行中</span>
+														<s:if test="projectDetail[5] == 1">
+																<span class="label label-success">成功</span>
+															</s:if>
+															<s:else>
+																<span class="label label-warning">进行中</span>
+														</s:else>
 													</td>
 													<td>
 														<a class="btn btn-success" href="uploadfile.jsp">
