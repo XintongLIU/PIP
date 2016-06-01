@@ -1,6 +1,6 @@
-package com.bookstore.service;
+package com.pip.service;
 
-import com.bookstore.dao.INewsDao;
+import com.pip.dao.INewsDao;
 
 public interface IHelloWorldService {
 	

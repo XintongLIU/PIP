@@ -17,7 +17,7 @@
     <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://123.206.79.126/hibernate?characterEncoding=utf-8"></property>
-		<property name="username" value="bookstore_dev" /> 
+		<property name="username" value="pip_dev" /> 
 		<property name="password" value="hopeaccomplish" />
 		<!-- 数据库连接池保持的最小连接数 -->
 		<property name="minIdle" value="1" />
@@ -43,7 +43,7 @@
 		<!-- 注意：我用的是Annotation的方式配置的Hibernate，这里的property的name是annotatedClasses -->
 		<property name="mappingResources">
 			<list>
-				<value>com/bookstore/domain/News.hbm.xml</value>
+				<value>com/pip/domain/News.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -67,11 +67,11 @@
 		</property>
 	</bean>                 
     
-    <bean id="newsDao" class="com.bookstore.dao.impl.NewsDaoImpl">
+    <bean id="newsDao" class="com.pip.dao.impl.NewsDaoImpl">
  		<property name="sessionFactory" ref="sessionFactory" />    <!-- 除了action类是自动装配，其他的类都需要显示的写出注入 -->
 	</bean>
     
-	<bean id="helloWorldService" class="com.bookstore.service.impl.HelloWorldServiceImpl">
+	<bean id="helloWorldService" class="com.pip.service.impl.HelloWorldServiceImpl">
 		<property name="newsDao" ref="newsDao" />
 	</bean>     <!-- action默认是自动装配的 -->
 

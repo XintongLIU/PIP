@@ -5,7 +5,7 @@
 <struts>
 <constant name="struts.devMode" value="true" />
 <package name="hello" namespace="/" extends="struts-default">
-		<action name="hello" class="com.bookstore.action.HelloWorldAction">
+		<action name="hello" class="com.pip.action.HelloWorldAction">
 			<result>/success.jsp</result>
 		</action>
 

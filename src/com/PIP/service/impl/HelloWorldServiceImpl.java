@@ -1,8 +1,8 @@
-package com.bookstore.service.impl;
+package com.pip.service.impl;
 
-import com.bookstore.dao.INewsDao;
-import com.bookstore.domain.News;
-import com.bookstore.service.IHelloWorldService;
+import com.pip.dao.INewsDao;
+import com.pip.domain.News;
+import com.pip.service.IHelloWorldService;
 
 public class HelloWorldServiceImpl implements IHelloWorldService{
 	

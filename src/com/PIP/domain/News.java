@@ -1,4 +1,4 @@
-package com.bookstore.domain;
+package com.pip.domain;
 
 public class News {
 	private Integer id;

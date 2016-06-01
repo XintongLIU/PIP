@@ -1,6 +1,6 @@
-package com.bookstore.dao;
+package com.pip.dao;
 
-import com.bookstore.domain.News;
+import com.pip.domain.News;
 
 public interface INewsDao{
 	Integer save(News news);

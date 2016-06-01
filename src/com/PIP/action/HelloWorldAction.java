@@ -1,6 +1,6 @@
-package com.bookstore.action;
+package com.pip.action;
 
-import com.bookstore.service.IHelloWorldService;
+import com.pip.service.IHelloWorldService;
 
 public class HelloWorldAction {
 	
