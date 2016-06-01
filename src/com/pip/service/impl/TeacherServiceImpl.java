@@ -35,12 +35,4 @@ public class TeacherServiceImpl implements ITeacherService {
 		return teacherDao.findAll();
 	}
 
-	public TeacherDAOImpl getTeacherDao() {
-		return teacherDao;
-	}
-
-	public void setTeacherDao(TeacherDAOImpl teacherDao) {
-		this.teacherDao = teacherDao;
-	}
-
 }
