@@ -11,4 +11,5 @@ public interface IStudentDAO {
 	public Integer insertStudent(Student student);			//插入Student信息
 	public void deleteStudent(Student student);		//删除指定Student
 	public Student findStudentByName(String studentName);	
+	public void update(Student student);
 }

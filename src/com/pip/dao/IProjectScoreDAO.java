@@ -7,4 +7,5 @@ public interface IProjectScoreDAO{
 	public ProjectScore findProjectScoreById(int projectID);		//通过ProjectScoreID查找ProjectScore信息
 	public Integer insertProjectScore(ProjectScore projectScore);			//插入ProjectScore信息
 	public void deleteProjectScore(ProjectScore projectScore);
+	public void update(ProjectScore projectScore);
 }

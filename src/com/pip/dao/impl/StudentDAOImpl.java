@@ -42,6 +42,11 @@ public class StudentDAOImpl extends HibernateDaoSupport implements IStudentDAO{
 		List<Student> list = getHibernateTemplate().find("from Student as s where s.studentName=?", studentName); 
 		return list.get(0);
 	}
+	
+	@Override
+	public void update(Student student){
+		getHibernateTemplate().update(student);
+	}
 
 	
 

@@ -36,6 +36,11 @@ public class ProjectScoreDAOImpl extends HibernateDaoSupport implements IProject
 		// TODO Auto-generated method stub
 		getHibernateTemplate().delete(projectScore);
 	}
+	
+	@Override
+	public void update(ProjectScore projectScore){
+		getHibernateTemplate().update(projectScore);
+	}
 
 	
 }
