@@ -1,4 +1,4 @@
-# bookstore
+# PIP Project
 
 1、首先将项目直接clone到workspace中</br>
 2、File -> New -> Dynamic Web Project</br>
