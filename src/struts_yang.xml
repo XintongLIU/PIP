@@ -9,5 +9,9 @@
 			<result>/success.jsp</result>
 		</action>
 
+		<action name="ManageStudentInfo" class="com.pip.action.ManageStudentInfoAction">
+			<result>/managestudentinfo.jsp</result>
+		</action>
+
     </package>
 </struts>

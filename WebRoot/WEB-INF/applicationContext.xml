@@ -108,6 +108,9 @@
 		<property name="addressDAO" ref="addressDAO" />
 	</bean> 
 
+	<bean id="studentService" class="com.pip.service.impl.StudentServiceImpl">
+		<property name="studentDAO" ref="studentDAO"/>
+	</bean>
 	
 	
 	
