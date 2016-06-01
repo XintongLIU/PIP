@@ -208,9 +208,15 @@
 													</td>
 													<td>首页检测</td>
 													<td>
-													  <span class="label label-success">成功</span>
+														<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">待检测</span>
+														</s:else>
+													  	<%-- <span class="label label-success">成功</span> --%>
 													</td>
-													<td>10</td>
+													<td>${score[0]}<!-- 10 --></td>
 												</tr>
 												 <tr>
 													<td>
@@ -218,9 +224,14 @@
 													</td>
 													<td>功能检测</td>
 													<td>
-													  <span class="label label-danger">失败</span>
+													  	<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">待检测</span>
+														</s:else>
 													</td>
-													<td>0</td>
+													<td>${score[1]}</td>
 												</tr>
 												<tr>
 													<td>
@@ -228,9 +239,14 @@
 													</td>
 													<td>性能检测</td>
 													<td>
-												      <span class="label label-warning">待检测</span>
+												      	<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">待检测</span>
+														</s:else>
 													</td>
-													<td>0</td>
+													<td>${score[2]}</td>
 												</tr>
 												<tr>
 													<td>
@@ -238,9 +254,14 @@
 													</td>
 													<td>压力测试</td>
 													<td>
-												      <span class="label label-warning">待检测</span>
+												      	<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">待检测</span>
+														</s:else>
 													</td>
-													<td>0</td>
+													<td>${score[3]}</td>
 												</tr>
 												<tr>
 													<td>
@@ -248,9 +269,14 @@
 													</td>
 													<td>代码检测</td>
 													<td>
-												      <span class="label label-warning">待检测</span>
+												      	<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">待检测</span>
+														</s:else>
 													</td>
-													<td>0</td>
+													<td>${score[4]}</td>
 												</tr>
 												<tr>
 													<td>
@@ -258,13 +284,18 @@
 													</td>
 													<td>文档检测</td>
 													<td>
-												      <span class="label label-warning">待检测</span>
+												      	<s:if test="projectDetail[0] == 1">
+															<span class="label label-success">成功</span>
+														</s:if>
+														<s:else>
+															<span class="label label-warning">待检测</span>
+														</s:else>
 													</td>
-													<td>0</td>
+													<td>${score[5]}</td>
 												</tr>
 												<tr style="font-size: x-large;">
 												    <td colspan="3" style="text-align: center;">总分</td>
-												    <td>50</td>
+												    <td>${totalScore}</td>
 												</tr>
 											</tbody>
 										</table>
