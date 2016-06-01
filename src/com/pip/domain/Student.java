@@ -1,5 +1,7 @@
 package com.pip.domain;
 
+import java.sql.Timestamp;
+
 public class Student {
 	private int studentID;
 	private String studentName;
@@ -7,7 +9,7 @@ public class Student {
 	private int projectID;
 	private int score;
 	private int teacherID;
-	private String studentIP;
+	private Timestamp loginTime;
 	private int teamID;
 	private String studentClass;
 	private int numSPM;
@@ -48,12 +50,6 @@ public class Student {
 	public void setTeacherID(int teacherID) {
 		this.teacherID = teacherID;
 	}
-	public String getStudentIP() {
-		return studentIP;
-	}
-	public void setStudentIP(String studentIP) {
-		this.studentIP = studentIP;
-	}
 	public int getTeamID() {
 		return teamID;
 	}
@@ -78,5 +74,12 @@ public class Student {
 	public void setWorkTime(int workTime) {
 		this.workTime = workTime;
 	}
+	public Timestamp getLoginTime() {
+		return loginTime;
+	}
+	public void setLoginTime(Timestamp loginTime) {
+		this.loginTime = loginTime;
+	}
+	
 	
 }
