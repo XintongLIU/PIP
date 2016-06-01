@@ -50,5 +50,10 @@ public class AdminDAOImpl  extends BaseDAOImpl<Admin> implements IAdminDAO {
 			return false;
 		}
 	}
+	
+	public Admin findAdminByName(String adminName){
+		List<Admin> list = super.find("from Admin where adminName = " + adminName);
+		return list.get(0);
+	}
 
 }

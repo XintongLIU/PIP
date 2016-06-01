@@ -73,5 +73,11 @@ public class StudentDAOImpl extends BaseDAOImpl<Student> implements IStudentDAO{
 			return false;
 		}
 	}
+	
+	public Student findStudentByName(String studentName){
+		List<Student> list = super.find("from Student where studentName = " + studentName);
+		return list.get(0);
+//		return true;
+	}
 
 }
