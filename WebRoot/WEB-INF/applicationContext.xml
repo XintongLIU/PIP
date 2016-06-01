@@ -83,7 +83,5 @@
 		<property name="addressDAO" ref="addressDAO" />
 	</bean> 
 	
-	<bean id="ITeacherService" class="com.pip.service.impl.TeacherServiceImpl">
-		<property name="teacherDao" ref="TeacherDAOImpl" /> 
-	</bean>
+
 </beans>
