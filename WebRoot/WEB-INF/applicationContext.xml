@@ -37,12 +37,6 @@
 		
 	</bean>             
                      
-    <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-          <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <tx:annotation-driven transaction-manager="txManager"/>
-
-                     
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="datasource" />
 		<!-- 注意：我用的是Annotation的方式配置的Hibernate，这里的property的name是annotatedClasses -->
