@@ -1,11 +1,8 @@
 package com.pip.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.pip.dao.IStudentDAO;
 import com.pip.domain.Student;
@@ -46,6 +43,11 @@ public class StudentDAOImpl extends HibernateDaoSupport implements IStudentDAO{
 	@Override
 	public void update(Student student){
 		getHibernateTemplate().update(student);
+	}
+
+	@Override
+	public List<Student> findStudentByTeamID(Integer teamID) {
+		return (List<Student>)getHibernateTemplate().find("from Student s where s.teamID=?", teamID);
 	}
 
 	

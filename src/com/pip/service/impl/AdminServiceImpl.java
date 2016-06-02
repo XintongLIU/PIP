@@ -19,9 +19,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public void deleteAdmin(Integer id) {
-		// TODO Auto-generated method stub
-		Admin admin = adminDAO.findAdminById(id);
-		adminDAO.deleteAdmin(admin);
+		adminDAO.delete(id);
 
 	}
 
@@ -33,8 +31,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	@Override
 	public Admin seleteAdmin(Integer id) {
-		// TODO Auto-generated method stub
-		return adminDAO.findAdminById(id);
+		return adminDAO.findByID(id);
 	}
 
 	@Override

@@ -8,11 +8,11 @@ public class AddressServiceImpl implements IAddressService{
 	IAddressDAO addressDAO;
 
 	@Override
-	public boolean saveAddress(String path, String ip) {
+	public Integer saveAddress(String path, String ip) {
 		Address address = new Address();
 		address.setAddressName(path);
 		address.setContentName(ip);
-		return addressDAO.insertAddress(address);
+		return addressDAO.save(address);
 	}
 
 	public IAddressDAO getAddressDAO() {

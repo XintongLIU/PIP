@@ -16,12 +16,12 @@ public class TeamServiceImpl implements ITeamService {
 	
 	@Override
 	public Integer insertTeam(Team team) {
-		return (Integer)teamDAO.save(team);
+		return (Integer)teamDAO.insertTeam(team);
 	}
 
 	@Override
 	public void deleteTeam(Integer teamID) {
-		teamDAO.delete(teamDAO.findTeamById(teamID));
+		teamDAO.deleteTeam(teamDAO.findTeamById(teamID));
 	}
 
 	@Override

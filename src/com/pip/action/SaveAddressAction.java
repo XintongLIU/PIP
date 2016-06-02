@@ -9,9 +9,8 @@ public class SaveAddressAction {
 	String result;
 	
 	public String saveAddressParam(){
-		if (addressService.saveAddress(path, ip)){
-			this.result = "success";
-		}else this.result = "fail";
+		addressService.saveAddress(path, ip);
+		this.result = "success";
 		return "success";
 	}
 

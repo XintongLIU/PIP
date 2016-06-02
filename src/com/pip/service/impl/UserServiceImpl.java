@@ -28,7 +28,7 @@ public class UserServiceImpl implements IUserService{
 				return student.getStudentID();
 			}
 		}else if(userType == 2){
-			Admin admin = iAdminDao.findAdminByName(username);
+			Admin admin = iAdminDao.findByAdminName(username);
 			if(admin != null && admin.getPassword() == password){
 				return admin.getAdminID();
 			}

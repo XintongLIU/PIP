@@ -12,4 +12,5 @@ public interface IStudentDAO {
 	public void deleteStudent(Student student);		//删除指定Student
 	public Student findStudentByName(String studentName);	
 	public void update(Student student);
+	public List<Student> findStudentByTeamID(Integer teamID);
 }

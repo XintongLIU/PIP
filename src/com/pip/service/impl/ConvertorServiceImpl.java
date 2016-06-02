@@ -16,7 +16,7 @@ public class ConvertorServiceImpl implements IConvertorService{
 
 	@Override
 	public TrTeam teamToTrTeam(Team team) {
-		Project project = projectDAO.findProjectById(team.getProjectID());
+		Project project = projectDAO.findByID(team.getProjectID());
 		TrTeam trTeam = new TrTeam();
 		trTeam.setProjectID(project.getProjectID());
 		trTeam.setProjectName(project.getProjectName());
