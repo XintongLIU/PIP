@@ -87,6 +87,10 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="addressDAO" class="com.pip.dao.impl.AddressDAOImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
     <bean id="projectDAO" class="com.pip.dao.impl.ProjectDAOImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>

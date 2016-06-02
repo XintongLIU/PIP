@@ -143,7 +143,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="onlinestudent.jsp">
+										<a href="OnlineStudent">
 											<i class="fa fa-user" aria-hidden="true"></i><span>在线学生信息</span>
 										</a>
 									</li>
@@ -153,7 +153,7 @@
 										</a>
 									</li>
 									<li class="active">
-										<a href="managestudentinfo.jsp">
+										<a href="ManageStudentInfo">
 											<i class="fa fa-briefcase" aria-hidden="true"></i><span>学生信息管理</span>
 										</a>
 									</li>
@@ -220,7 +220,7 @@
 													<td>${studentID }</td>
 													<td>${score }</td>
 													<td>
-													  <a class="btn btn-success" href="studentdetail.jsp#id=${studentID }">
+													  <a class="btn btn-success" href="ShowStudentDetail?studentID=${studentID }">
 														<i class="fa fa-search-plus "></i>                                            
 													  </a>
 													</td>
