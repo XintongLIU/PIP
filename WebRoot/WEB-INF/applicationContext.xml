@@ -32,11 +32,10 @@
 		<!-- 连接空闲时是否进行有效性验证 -->
 		<property name="testWhileIdle" value="true" />
 
-	</bean>
-
-
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		
+	</bean>             
+                     
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="datasource" />
 		<!-- 注意：我用的是Annotation的方式配置的Hibernate，这里的property的name是annotatedClasses -->
 		<property name="mappingResources">
