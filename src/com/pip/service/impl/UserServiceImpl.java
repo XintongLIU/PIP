@@ -1,5 +1,7 @@
 package com.pip.service.impl;
 
+import java.sql.Timestamp;
+
 import javax.annotation.Resource;
 
 import com.pip.dao.IAdminDAO;
@@ -24,18 +26,20 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		if(userType == 1){
 			Student student = iStudentDao.findStudentByName(username);
-			if(student != null && student.getPassword() == password){
+			if(student != null && student.getPassword().equals(password)){
+				student.setLoginTime(new Timestamp(System.currentTimeMillis()));
+				iStudentDao.update(student);
 				return student.getStudentID();
 			}
 		}else if(userType == 2){
-			Admin admin = iAdminDao.findByAdminName(username);
-			if(admin != null && admin.getPassword() == password){
-				return admin.getAdminID();
+			Teacher teacher = iTeacherDao.findTeacherByName(username);
+			if(teacher != null && teacher.getPassword().equals(password)){
+				return teacher.getTeacherID();
 			}
 		}else if(userType == 3){
-			Teacher teacher = iTeacherDao.findTeacherByName(username);
-			if(teacher != null && teacher.getPassword() == password){
-				return teacher.getTeacherID();
+			Admin admin = iAdminDao.findByAdminName(username);
+			if(admin != null && admin.getPassword().equals(password)){
+				return admin.getAdminID();
 			}
 		}
 		
@@ -47,5 +51,31 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public IStudentDAO getiStudentDao() {
+		return iStudentDao;
+	}
+
+	public void setiStudentDao(IStudentDAO iStudentDao) {
+		this.iStudentDao = iStudentDao;
+	}
+
+	public ITeacherDAO getiTeacherDao() {
+		return iTeacherDao;
+	}
+
+	public void setiTeacherDao(ITeacherDAO iTeacherDao) {
+		this.iTeacherDao = iTeacherDao;
+	}
+
+	public IAdminDAO getiAdminDao() {
+		return iAdminDao;
+	}
+
+	public void setiAdminDao(IAdminDAO iAdminDao) {
+		this.iAdminDao = iAdminDao;
+	}
+	
+	
 
 }

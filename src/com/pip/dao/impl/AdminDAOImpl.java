@@ -38,7 +38,13 @@ public class AdminDAOImpl extends HibernateDaoSupport implements IAdminDAO{
 
 	@Override
 	public Admin findByAdminName(String name) {
-		return (Admin)getHibernateTemplate().find("from Admin a where a.adminName=?", name);
+		List<Admin> list = getHibernateTemplate().find("from Admin a where a.adminName=?", name);
+		if(list.isEmpty()){
+			return null;
+		}
+		else{
+			return list.get(0);
+		}
 	}
 	
 }

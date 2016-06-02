@@ -37,7 +37,12 @@ public class StudentDAOImpl extends HibernateDaoSupport implements IStudentDAO{
 	public Student findStudentByName(String studentName) {
 		// TODO Auto-generated method stub
 		List<Student> list = getHibernateTemplate().find("from Student as s where s.studentName=?", studentName); 
-		return list.get(0);
+		if(list.isEmpty()){
+			return null;
+		}
+		else{
+			return list.get(0);
+		}
 	}
 	
 	@Override

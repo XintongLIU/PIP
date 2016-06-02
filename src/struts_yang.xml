@@ -32,6 +32,16 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		
+		<action name="ShowTeamDetail" class="com.pip.action.ShowTeamDetailAction">
+			<result>/groupdetail.jsp</result>
+		</action>
+		
+		<action name="Login" class="com.pip.action.LoginAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 
     </package>
 </struts>

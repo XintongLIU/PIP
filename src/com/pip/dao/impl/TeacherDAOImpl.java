@@ -38,8 +38,13 @@ public class TeacherDAOImpl extends HibernateDaoSupport implements ITeacherDAO{
 
 	@Override
 	public Teacher findTeacherByName(String teacherName) {
-		// TODO Auto-generated method stub
-		return (Teacher)getHibernateTemplate().find("from Teacher as t where t.teacherName=?" , teacherName);
+		List<Teacher> list = getHibernateTemplate().find("from Teacher as t where t.teacherName=?" , teacherName);
+		if(list.isEmpty()){
+			return null;
+		}
+		else{
+			return list.get(0);
+		}
 	}
 
 	@Override

@@ -44,4 +44,20 @@ public class TeamServiceImpl implements ITeamService {
 		return studentDAO.findStudentByTeamID(teamID);
 	}
 
+	public TeamDAOImpl getTeamDAO() {
+		return teamDAO;
+	}
+
+	public void setTeamDAO(TeamDAOImpl teamDAO) {
+		this.teamDAO = teamDAO;
+	}
+
+	public StudentDAOImpl getStudentDAO() {
+		return studentDAO;
+	}
+
+	public void setStudentDAO(StudentDAOImpl studentDAO) {
+		this.studentDAO = studentDAO;
+	}
+
 }

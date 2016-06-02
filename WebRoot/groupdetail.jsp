@@ -131,7 +131,7 @@
 											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small id="small_username"></small>
 										</div>
 									</div>
 									<div class="divider2"></div>
@@ -218,46 +218,18 @@
 												  </tr>
 											  </thead>   
 											  <tbody>
+											  <s:iterator value="teamMemberList">
 												<tr>
-													<td>学生X</td>
-													<td>201321250X</td>
-													<td>2013212XXX</td>
+													<td>${studentName}</td>
+													<td>${studentClass}</td>
+													<td>${studentID }</td>
 													<td>
-														<a class="btn btn-success" href="studentdetail.jsp#">
+														<a class="btn btn-success" href="ShowStudentDetail?studentID=${studentID }">
 														    <i class="fa fa-search-plus "></i>                                            
 													    </a>
 													</td>                                       
 												</tr>
-												<tr>
-													<td>学生X</td>
-													<td>201321250X</td>
-													<td>2013212XXX</td>
-													<td>
-														<a class="btn btn-success" href="studentdetail.jsp#">
-														    <i class="fa fa-search-plus "></i>                                            
-													    </a>
-													</td>                                       
-												</tr>
-												<tr>
-													<td>学生X</td>
-													<td>201321250X</td>
-													<td>2013212XXX</td>
-													<td>
-														<a class="btn btn-success" href="studentdetail.jsp#">
-														    <i class="fa fa-search-plus "></i>                                            
-													    </a>
-													</td>                                       
-												</tr>
-												<tr>
-													<td>学生X</td>
-													<td>201321250X</td>
-													<td>2013212XXX</td>
-													<td>
-														<a class="btn btn-success" href="studentdetail.jsp#">
-														    <i class="fa fa-search-plus "></i>                                            
-													    </a>
-													</td>                                       
-												</tr>			                                  
+											</s:iterator>		                                  
 											  </tbody>
 										</table>
 									</div>
@@ -441,6 +413,8 @@
 			$('#save').click(function(){
 				//保存分数的代码......
 			})
+			
+			
 		</script>
 		<!-- end: JavaScript-->
 		
