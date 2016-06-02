@@ -5,7 +5,7 @@
 	<class name="Team" table="team">
 		<cache usage="read-write" /> <!-- 缓存 -->
 		<id name="teamID" column="teamID" type="int">
-			<generator class="increment"/>
+			<generator class="identity"/>
 		</id>
 		<property name="teamName" column="teamName" length="45" type="string" />
 		<property name="projectID" column="project_projectID" type="int" />
