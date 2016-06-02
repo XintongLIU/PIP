@@ -6,6 +6,7 @@ public class ProjectScore {
 	private int projectState;
 	private int projectScore;
 	private int detailID;
+	private int detailType;
 	public int getProjectID() {
 		return projectID;
 	}
@@ -35,6 +36,12 @@ public class ProjectScore {
 	}
 	public void setDetailID(int detailID) {
 		this.detailID = detailID;
+	}
+	public int getDetailType() {
+		return detailType;
+	}
+	public void setDetailType(int detailType) {
+		this.detailType = detailType;
 	}
 	
 	

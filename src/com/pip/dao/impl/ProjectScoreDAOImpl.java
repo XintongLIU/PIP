@@ -19,9 +19,9 @@ public class ProjectScoreDAOImpl extends HibernateDaoSupport implements IProject
 	}
 
 	@Override
-	public ProjectScore findProjectScoreById(int projectID) {
+	public List<ProjectScore> findProjectScoreById(int projectID) {
 		// TODO Auto-generated method stub
-		return (ProjectScore) getHibernateTemplate().get(ProjectScore.class, projectID);
+		return (List<ProjectScore>)getHibernateTemplate().find("from ProjectScore as p where p.projectID = ?",projectID);
 	}
 
 	@Override

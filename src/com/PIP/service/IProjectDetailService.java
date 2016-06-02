@@ -7,4 +7,5 @@ import com.pip.domain.ProjectScore;
 public interface IProjectDetailService {
 	List<ProjectScore> showProjectDetailList();
 	void updateProjectDetail(ProjectScore projectScore);
+	List<ProjectScore> showProjectDetailListByProjectID(Integer projectID);
 }

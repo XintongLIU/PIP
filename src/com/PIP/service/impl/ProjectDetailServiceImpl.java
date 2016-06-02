@@ -23,4 +23,18 @@ public class ProjectDetailServiceImpl implements IProjectDetailService {
 		projectScoreDAO.update(projectScore);
 	}
 
+	@Override
+	public List<ProjectScore> showProjectDetailListByProjectID(Integer projectID) {
+		return projectScoreDAO.findProjectScoreById(projectID);
+	}
+
+	public ProjectScoreDAOImpl getProjectScoreDAO() {
+		return projectScoreDAO;
+	}
+
+	public void setProjectScoreDAO(ProjectScoreDAOImpl projectScoreDAO) {
+		this.projectScoreDAO = projectScoreDAO;
+	}
+
+	
 }

@@ -133,5 +133,9 @@
 		<property name="iTeacherDao" ref="teacherDAO"/>
 		<property name="iAdminDao" ref="adminDAO"/>
 	</bean>
+	
+	<bean id="projectScoreService" class="com.pip.service.impl.ProjectDetailServiceImpl">
+		<property name="projectScoreDAO" ref="projectScoreDAO"/>
+	</bean>
 
 </beans>
