@@ -4,8 +4,26 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 <constant name="struts.devMode" value="true" />
-<package name="su" namespace="/" extends="struts-default">
-
-
+<package name="su" namespace="/" extends="struts-default,json-default">
+	<action name="SaveAddress" class="com.pip.action.SaveAddressAction" method="saveAddressParam">
+		<result name="success" type="json">
+			<param name="root">result</param>>
+		</result>
+		<result name="fail" type="json">
+			<param name="root">result</param>>
+		</result>
+	</action>
+	
+	<action name="ShowTrTeam" class="com.pip.action.TeamAction" method="showTrTeamList">
+		<result name="success" type="json">
+			<param name="root">trTeamList</param>>
+		</result>
+	</action>
+	
+	<action name="ShowProjectDetailScore" class="com.pip.action.ShowProjectDetailScoreAction" method="execute">
+		<result name="success" type="json">
+			<param name="root">projectScoreList</param>>
+		</result>
+	</action>
 </package>
 </struts>

@@ -198,7 +198,7 @@ th {
 									</div>
 								</div>
 								<div class="divider2"></div>
-								<li class="active"><a href="index-administrator.jsp"> <i
+								<li class="active"><a href="ShowStudentList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>学生信息管理</span>
 								</a></li>
 								<li><a href="teacherinfo.jsp"> <i
@@ -247,37 +247,38 @@ th {
 							</h6>
 						</div>
 						<div class="panel-body">
-							<form class="form-horizontal ">
+							<form class="form-horizontal " action="AddStudent.action">
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">姓名</label>
 									<div class="col-sm-6">
-										<input type="text" id="nameInput" name="input-normal"
+										<input type="text" id="nameInput" name="studentName"
 											class="form-control" placeholder="姓名">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">学号</label>
 									<div class="col-sm-6">
-										<input type="text" id="idInput" name="input-normal"
+										<input type="text" id="idInput" name="studentNum"
 											class="form-control" placeholder="学号">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">班级</label>
 									<div class="col-sm-6">
-										<input type="text" id="classInput" name="input-normal"
+										<input type="text" id="classInput" name="studentClass"
 											class="form-control" placeholder="班级">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">组号</label>
 									<div class="col-sm-6">
-										<input type="text" id="groupInput" name="input-normal"
+										<input type="text" id="groupInput" name="teamNum"
 											class="form-control" placeholder="组号">
 									</div>
 								</div>
 								<div class="col-sm-offset-4">
-									<a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()">添加</a>
+									<!-- <a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()" href="AddStudent.action">添加</a> -->
+									<input class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()" type="submit" value="提交">
 								</div>
 							</form>
 						</div>
@@ -312,17 +313,33 @@ th {
 										</tr>
 									</thead>
 									<tbody id="studentinfo">
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>2013212XXX</td>
-											<td>学生X</td>
-											<td>201321250X</td>
-											<td>3</td>
-											<td>
-											  <input type="button" value="删除" onclick="delTr(this);">
-											  <input type="button" value="修改" onclick="modTr(this);">
-											</td>
-										</tr>
+										<s:iterator value="studentList">
+											
+											<tr>
+												<td><input type="checkbox"></td>
+												<td>${studentID }</td>
+												<td>${studentName }</td>
+												<td>${studentClass }</td>
+												<td>${teamID }</td>
+												<td>
+												  <input type="button" value="删除" onclick="delTr(this);">
+												
+											 	  <input type="button" value="修改" onclick="modTr(this);">
+												
+												</td>
+											
+<!-- 											<td><input type="checkbox"></td> -->
+<!-- 											<td>2013212XXX</td> -->
+<!-- 											<td>学生X</td> -->
+<!-- 											<td>201321250X</td> -->
+<!-- 											<td>3</td> -->
+<!-- 											<td> -->
+<!-- 											  <input type="button" value="删除" onclick="delTr(this);"> -->
+<!-- 											  <input type="button" value="修改" onclick="modTr(this);"> -->
+<!-- 											</td> -->
+											</tr>
+											
+										</s:iterator>
 									</tbody>
 								</table>
 							</div>
@@ -408,9 +425,9 @@ th {
 
 	<!-- Pages JS -->
 	<script type="text/javascript">
-		var $ = function(id) {
-			return document.getElementById(id);
-		}
+// 		var $ = function(id) {
+// 			return document.getElementById(id);
+// 		}
 		var createObj = function(tagName) {
 			return document.createElement(tagName);
 		}
@@ -488,6 +505,23 @@ th {
 				var tbody = document.getElementById("studentinfo");
 				tbody.removeChild(obj.parentNode.parentNode);//this指删除按钮，父节点为当前的td,父节点为当前的tr;
 				//每删除一行，后面的行数要都要减一，解决这个问题的思路：我直接获取执行删除按钮后tbody中的全部行，然后进行重新排列；
+				var tr = obj.parentNode.parentNode;
+				var tDs = tr.getElementsByTagName("td");
+				var studentID = tDs[1].innerHTML;
+				alert(studentID);
+				$.ajax({
+					url:"DeleteStudent",
+					data:{
+						"studentID": studentID
+					},
+					dataType:"json",
+					success:function(data){
+//	 					alert("success");
+					},
+					error:function(textStatus, errorThrown){
+						/* alert(errorThrown); */
+					}
+				});
 			} else {
 				return;
 			}
@@ -549,6 +583,8 @@ th {
 			//隐藏遮罩层
 			cancleBtn();
 			//3.获得主页中的数据,将修改的数据填入到主页中,
+			
+			
 			var tbody = document.getElementById("studentinfo");
 			var rows = tbody.rows.length; //获得所有的行
 			for (var i = 0; i < rows; i++) {
@@ -564,6 +600,24 @@ th {
 					}
 				}
 			}
+			
+			$.ajax({
+				//type:"post",
+				url:"UpdateStudent",
+				data:{
+					"studentClass": classTxt,
+					"teamNum":groupTxt,
+					"studentID":idTxt
+				},
+				dataType:"json",
+				success:function(data){
+// 					alert("success");
+				},
+				error:function(textStatus, errorThrown){
+					/* alert(errorThrown); */
+				}
+			});
+			alert("haahhaahaah");
 		}
 
 		//全选

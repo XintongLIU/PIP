@@ -4,9 +4,53 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 <constant name="struts.devMode" value="true" />
-<package name="yang" namespace="/" extends="struts-default">
-				<action name="hello" class="com.pip.action.HelloWorldAction">
+<package name="yang" namespace="/" extends="struts-default,json-default">
+		<action name="hello" class="com.pip.action.HelloWorldAction">
 			<result>/success.jsp</result>
+		</action>
+
+		<action name="ManageStudentInfo" class="com.pip.action.ManageStudentInfoAction">
+			<result>/managestudentinfo.jsp</result>
+		</action>
+		
+		<action name="ShowStudentDetail" class="com.pip.action.ShowStudentDetailAction">
+			<result>/studentdetail.jsp</result>
+		</action>
+		
+		<action name="EnterStudentInfo" class="com.pip.action.EnterStudentInfoAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="OnlineStudent" class="com.pip.action.OnlineStudentAction">
+			<result>/onlinestudent.jsp</result>
+		</action>
+		
+		<action name="UpdateStudentDetail" class="com.pip.action.UpdateStudentDetailAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="ShowTeamDetail" class="com.pip.action.ShowTeamDetailAction">
+			<result>/groupdetail.jsp</result>
+		</action>
+		
+		<action name="Login" class="com.pip.action.LoginAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="GetUserName" class="com.pip.action.GetUserNameAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="Logout" class="com.pip.action.LogoutAction">
+			<result>/login.jsp</result>
 		</action>
 
     </package>

@@ -89,7 +89,7 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<div class="profile-info">
-								<span class="name">张三</span>
+								<span class="name"></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>
@@ -128,7 +128,7 @@
 											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small class="name" id="small_username"></small>
 										</div>
 									</div>
 									<div class="divider2"></div>
@@ -143,7 +143,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="onlinestudent.jsp">
+										<a href="OnlineStudent">
 											<i class="fa fa-user" aria-hidden="true"></i><span>在线学生信息</span>
 										</a>
 									</li>
@@ -153,7 +153,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="managestudentinfo.jsp">
+										<a href="ManageStudentInfo">
 											<i class="fa fa-briefcase" aria-hidden="true"></i><span>学生信息管理</span>
 										</a>
 									</li>
@@ -221,7 +221,7 @@
 		<script src="assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="assets/vendor/skycons/js/skycons.js"></script>		
-		
+	
 		<!-- Plugins JS-->		
 		<script src="assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
 		<script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -243,7 +243,7 @@
 		<script src="assets/plugins/morris/js/morris.min.js"></script>
 		<script src="assets/plugins/gauge/js/gauge.min.js"></script>		
 		<script src="assets/plugins/d3/js/d3.min.js"></script>		
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
 		
 		<!-- Theme JS -->		
 		<script src="assets/js/jquery.mmenu.min.js"></script>
@@ -253,6 +253,26 @@
 		<script src="assets/js/pages/index.js"></script>
 		
 		<!-- end: JavaScript-->
+		
+		<script>
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+		
+		
+		</script>
+		
+		
+		
+		
+		<!-- 这个JS文件加载的非常慢，必须放在最后！  -->
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
+		
 		
 	</body>
 	

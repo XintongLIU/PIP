@@ -6,6 +6,5 @@
 <constant name="struts.devMode" value="true" />
 <package name="liu" namespace="/" extends="struts-default">
 
-
     </package>
 </struts>

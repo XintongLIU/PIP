@@ -1,56 +1,39 @@
 package com.pip.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.pip.dao.IAddressDAO;
 import com.pip.domain.Address;
 
-@Repository
-public class AddressDAOImpl extends BaseDAOImpl<Address> implements IAddressDAO {
+ public class AddressDAOImpl  extends HibernateDaoSupport implements IAddressDAO{
+
+	@Override
+	public Address findByID(Integer id) {
+		return (Address)getHibernateTemplate().get(Address.class, id);
+	}
 
 	@Override
 	public List<Address> findAll() {
-		// TODO Auto-generated method stub
-		List<Address> list = new ArrayList<Address>();
-		list = super.find("from Address");
-		return list;
+		return (List<Address>)getHibernateTemplate().find("from Address");
 	}
 
 	@Override
-	public Address findAddressById(int addressID) {
-		// TODO Auto-generated method stub
-//		System.out.println("AddressID " +addressID);
-		List<Address> list = super.find("from Address where addressID = " + addressID);
-		return list.get(0);
+	public Integer save(Address address) {
+		return (Integer)getHibernateTemplate().save(address);
 	}
 
 	@Override
-	public boolean insertAddress(Address address) {
-		// TODO Auto-generated method stub
-		try{
-			//System.out.println("address " + address.getAddressName());
-			super.save(address);
-			return true;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
+	public void update(Address address) {
+		getHibernateTemplate().update(address);
+		
 	}
 
 	@Override
-	public boolean deleteAddress(Address address) {
-		// TODO Auto-generated method stub
-		try{
-//			super.delete(address); 发生ID冲突
-			super.executeHql("delete from Address where addressID = " + address.getAddressID());
-			return true;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
+	public void delete(Integer id) {
+		getHibernateTemplate().delete(findByID(id));
+		
 	}
 
-}
+ }

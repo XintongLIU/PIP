@@ -43,7 +43,7 @@
     <body>
 
         <div class="page-container" style="top:50%;">
-              <form action="" method="post" class="frame">
+              <form method="post" class="frame">
                   <h1>欢迎使用PIP系统</h1>
                   <input type="text" name="username" class="username" placeholder="用户名" required="">
                   <input type="password" name="password" class="password" placeholder="密码" required="">
@@ -52,25 +52,49 @@
                     <li><input type="radio" name="radio" data-labelauty="教师" value="2"></li>
                     <li><input type="radio" name="radio" data-labelauty="管理员" value="3"></li>
                   </ul>
-                  <button type="submit">登陆</button>
+                 <button onclick="Login();return false;">登陆</button>
               </form>
-        </div>
-        <!-- Javascript -->
+               
+              
         <script src="assets/js/jquery-1.8.2.min.js"></script>
         <script src="assets/js/supersized.3.2.7.min.js"></script>
         <script src="assets/js/supersized-init.js"></script>
         <script src="assets/js/jquery-labelauty.js"></script>
         <script src="assets/js/sweetalert.min.js"></script>
         <script>
-        $('.page-container form').submit(function(){
-        var username = $(this).find('.username').val();
-        var password = $(this).find('.password').val();
-        var usertype = $("input[name='radio']:checked").val();
-        if(usertype == null){
-            swal("注意!", "请选择您的用户类型！", "error");
-            return false;
+        function Login(){
+	        var username = $('.username').val();
+	        var password = $('.password').val();
+	        var usertype = $("input[name='radio']:checked").val();
+	        if(usertype == null){
+	            swal("注意!", "请选择您的用户类型！", "error");
+	            return false;
+	        }
+	        $.ajax({
+	        	url: "Login",
+	        	type: "post",
+	        	data: {
+	        		"username": username,
+	        		"password": password,
+	        		"userType": usertype
+	        	},
+	        	dataType:"json",
+	        	success:function(data){
+	        		if(data == "LOGIN_SUCCESS"){
+	        			if(usertype == "1")
+	        				window.location.href = "index-student.jsp";
+	        			else if(usertype == "2")
+	        				window.location.href = "index-teacher.jsp";
+	        			else if(usertype == "3")
+	        				window.location.href = "index-administrator.jsp";
+	        		}
+	        		else if(data == "LOGIN_FAIL"){
+	        			swal("抱歉", "登录失败", "error");
+	        		}
+	        	}
+	        })
         }
-    });
+
         $(function(){
           $(':input').labelauty();
         });

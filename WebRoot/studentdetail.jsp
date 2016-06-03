@@ -90,7 +90,7 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<div class="profile-info">
-								<span class="name">张三</span>
+								<span class="name"></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>
@@ -129,7 +129,7 @@
 											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small class="name"></small>
 										</div>
 									</div>
 									<div class="divider2"></div>
@@ -144,7 +144,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="onlinestudent.jsp">
+										<a href="OnlineStudent">
 											<i class="fa fa-user" aria-hidden="true"></i><span>在线学生信息</span>
 										</a>
 									</li>
@@ -154,7 +154,7 @@
 										</a>
 									</li>
 									<li class="active">
-										<a href="managestudentinfo.jsp">
+										<a href="ManageStudentInfo">
 											<i class="fa fa-briefcase" aria-hidden="true"></i><span>学生信息管理</span>
 										</a>
 									</li>
@@ -210,7 +210,7 @@
 													<img src="assets/img/avatar.jpg" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">
 												</div>
 												<h4 class="bk-margin-top-10 bk-docs-font-weight-300">
-												  <a href="#" id="username" data-type="text" data-original-title="学生姓名" class="editable editable-click editable-disabled">学生X</a>
+												  <a href="#" id="a_studentName" data-type="text" data-original-title="学生姓名" class="editable editable-click editable-disabled">${student.studentName }</a>
 												</h4>
 											</div>
 											<hr class="bk-margin-off">
@@ -228,25 +228,29 @@
 																<div class="table-responsive">
 										                          <table class="table table-bordered">
 											                        <tbody>
+											                        	<tr>
+													                     <td><strong>学号</strong></td>
+													                     <td><a href="#" id="a_studentID" data-type="text" data-original-title="学号" class="editable-click editable-disabled">${student.studentID }</a></td>
+												                       </tr>
+											                        
+											                        
+											                        
 												                       <tr>
 													                     <td><strong>所在班级</strong></td>
-													                     <td><a href="#" id="class" data-type="text" data-original-title="所在班级" class="editable editable-click editable-disabled">201321150X</a></td>
+													                     <td><a href="#" id="a_studentClass" data-type="text" data-original-title="所在班级" class="editable editable-click editable-disabled">${student.studentClass }</a></td>
 												                       </tr>
-												                       <tr>
-													                     <td><strong>学号</strong></td>
-													                     <td><a href="#" id="id" data-type="text" data-original-title="学号" class="editable editable-click editable-disabled">2013212XXX</a></td>
-												                       </tr>
+												                    
 												                       <tr>
 													                     <td><strong>所在团队</strong></td>
-													                     <td><a href="#" id="id" data-type="text" data-original-title="所属团队" class="editable editable-click editable-disabled">1</a></td>
+													                     <td><a href="#" id="a_teamID" data-type="text" data-original-title="所属团队" class="editable editable-click editable-disabled">${student.teamID }</a></td>
 												                       </tr>
 												                       <tr>
 													                     <td><strong>工时</strong></td>
-													                     <td><a href="#" id="id" data-type="text" data-original-title="工时" class="editable editable-click editable-disabled">17</a></td>
+													                     <td><a href="#" id="a_workTime" data-type="text" data-original-title="工时" class="editable editable-click editable-disabled">${student.workTime }</a></td>
 												                       </tr>
 												                       <tr>
 													                     <td><strong>得分</strong></td>
-													                     <td><a href="#" id="id" data-type="text" data-original-title="得分" class="editable editable-click editable-disabled">99</a></td>
+													                     <td><a href="#" id="a_score" data-type="text" data-original-title="得分" class="editable editable-click editable-disabled">${student.score }</a></td>
 												                       </tr>
 											                        </tbody>
 									 	                          </table>
@@ -315,7 +319,51 @@
 				  $('.editable').editable('toggleDisabled');
 			});    
 			$('#save').click(function(){
-				//保存学生信息的代码......
+				var studentName = $("#a_studentName").html();
+				var studentID = $("#a_studentID").html();
+				var studentClass = $("#a_studentClass").html();
+				var teamID = $("#a_teamID").html();
+				var workTime = $("#a_workTime").html();
+				var score = $("#a_score").html();
+				$.ajax({
+					url: "UpdateStudentDetail",
+					type: "post",
+					data:{
+						"studentName" : studentName,
+						"studentID": studentID,
+						"studentClass": studentClass,
+						"teamID" : teamID,
+						"workTime" :workTime,
+						"score": score
+					},
+					dataType: "json",
+					success: function(data){
+						rstarr = data.split(" ");
+						if(rstarr[0] == "STUDENTID_NOT_EXISTS"){
+							alert("学号不存在！");
+						}
+						else if(rstarr[0] == "SUCCESS"){
+							alert("已保存");
+						}
+						else if(rstarr[0] == "TEAMID_ILLEGAL"){
+							alert("团队号必须是一个整数！");
+						}
+						else if(rstarr[0] == "WORKTIME_ILLEGAL"){
+							alert("工时必须是整数！");
+						}
+						else if(rstarr[0] == "SCORE_ILLEGAL"){
+							alert("分数必须是整数！");
+						}
+					}
+					
+				})
+			})
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
 			})
 		</script>
 		

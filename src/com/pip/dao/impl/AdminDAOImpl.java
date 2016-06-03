@@ -3,52 +3,48 @@ package com.pip.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.pip.dao.IAdminDAO;
 import com.pip.domain.Admin;
-@Repository
-public class AdminDAOImpl  extends BaseDAOImpl<Admin> implements IAdminDAO {
+
+public class AdminDAOImpl extends HibernateDaoSupport implements IAdminDAO{
+
+	@Override
+	public Admin findByID(Integer id) {
+		return (Admin)getHibernateTemplate().get(Admin.class, id);
+	}
 
 	@Override
 	public List<Admin> findAll() {
-		// TODO Auto-generated method stub
-		List<Admin> list = new ArrayList<Admin>();
-		list = super.find("from Admin");
-		return list;
+		return (List<Admin>)getHibernateTemplate().find("from Admin");
 	}
 
 	@Override
-	public Admin findAdminById(int adminID) {
-		// TODO Auto-generated method stub
-		
-		List<Admin> list = super.find("from Admin where adminID = " + adminID);
-		return list.get(0);
+	public Integer save(Admin admin) {
+		return (Integer)getHibernateTemplate().save(admin);
 	}
 
 	@Override
-	public boolean insertAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		try{
-			//System.out.println("Admin " + admin.getAdminName());
-			super.save(admin);
-			return true;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
+	public void update(Admin admin) {
+		getHibernateTemplate().update(admin);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		getHibernateTemplate().delete(findByID(id));
+	}
+
+	@Override
+	public Admin findByAdminName(String name) {
+		List<Admin> list = getHibernateTemplate().find("from Admin a where a.adminName=?", name);
+		if(list.isEmpty()){
+			return null;
+		}
+		else{
+			return list.get(0);
 		}
 	}
-
-	@Override
-	public boolean deleteAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		try{
-			super.delete(admin);
-			return true;
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
-
+	
 }

@@ -79,7 +79,7 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<div class="profile-info">
-								<span class="name">张三</span>
+								<span class="name"></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>
@@ -118,7 +118,7 @@
 											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small class="name">张三</small>
 										</div>
 									</div>
 									<div class="divider2"></div>
@@ -133,7 +133,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="onlinestudent.jsp">
+										<a href="OnlineStudent">
 											<i class="fa fa-user" aria-hidden="true"></i><span>在线学生信息</span>
 										</a>
 									</li>
@@ -143,7 +143,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="managestudentinfo.jsp">
+										<a href="ManageStudentInfo">
 											<i class="fa fa-briefcase" aria-hidden="true"></i><span>学生信息管理</span>
 										</a>
 									</li>
@@ -191,33 +191,33 @@
 									<h6><i class="fa fa-indent red"></i>信息录入</h6>							
 								</div>
 								<div class="panel-body">
-									<form action="" method="post" class="form-horizontal ">
+									<form id="form" class="form-horizontal ">
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="input-normal">学生学号</label>
 											<div class="col-sm-6">
-												<input type="text" id="input-normal" name="input-normal" class="form-control" placeholder="学号" required="">
+												<input type="text" id="input-normal" name="studentID" class="form-control" placeholder="学号" required="">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="input-normal">学生姓名</label>
 											<div class="col-sm-6">
-												<input type="text" id="input-normal" name="input-normal" class="form-control" placeholder="姓名" required="">
+												<input type="text" id="input-normal" name="studentName" class="form-control" placeholder="姓名" required="">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="input-normal">学生所在班级</label>
 											<div class="col-sm-6">
-												<input type="text" id="input-normal" name="input-normal" class="form-control" placeholder="班级" required="">
+												<input type="text" id="input-normal" name="studentClass" class="form-control" placeholder="班级" required="">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="input-normal">学生所属组号</label>
 											<div class="col-sm-6">
-												<input type="text" id="input-normal" name="input-normal" class="form-control" placeholder="组号" required="">
+												<input type="text" id="input-normal" name="teamID" class="form-control" placeholder="组号" required="">
 											</div>
 										</div>
 										<div class="col-sm-offset-4">
-										<button type="submit" class="bk-margin-5 btn btn-primary col-sm-6">录入</button>
+										<a class="bk-margin-5 btn btn-primary col-sm-6" onclick="SubmitForm();return false;">录入</a>
 										</div>
 									</form>
 								</div>				
@@ -234,6 +234,40 @@
 		
 		<!-- Vendor JS-->				
 		<script src="assets/vendor/js/jquery.min.js"></script>
+		
+		<script>
+
+			function SubmitForm() {
+				$.ajax({
+					cache : true,
+					type : "POST",
+					url : "EnterStudentInfo",
+					data : $('form#form').serialize(),
+					success : function(data) {
+						rstarr = data.split(" ");
+						if(rstarr[0] == "STUDENTID_EXISTS"){
+							alert("学号已存在！");
+						}
+						else if(rstarr[0] == "SUCCESS"){
+							window.location.href = "ShowStudentDetail?studentID=" + rstarr[1];
+						}
+						else if(rstarr[0] == "TEAMID_ILLEGAL"){
+							alert("组号输入错误！");
+						}
+					}
+				});
+			}
+			
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+		</script>
+		
+		
 		<script src="assets/vendor/js/jquery-2.1.1.min.js"></script>
 		<script src="assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -268,8 +302,13 @@
 		
 		<!-- Pages JS -->
 		<script src="assets/js/pages/index.js"></script>
+
+		
+		
 		
 		<!-- end: JavaScript-->
+		
+
 		
 	</body>
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,7 +89,7 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<div class="profile-info">
-								<span class="name">张三</span>
+								<span class="name"></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>
@@ -127,7 +128,7 @@
 											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small class="name"></small>
 										</div>
 									</div>
 									<div class="divider2"></div>
@@ -142,7 +143,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="onlinestudent.jsp">
+										<a href="OnlineStudent">
 											<i class="fa fa-user" aria-hidden="true"></i><span>在线学生信息</span>
 										</a>
 									</li>
@@ -152,7 +153,7 @@
 										</a>
 									</li>
 									<li class="active">
-										<a href="managestudentinfo.jsp">
+										<a href="ManageStudentInfo">
 											<i class="fa fa-briefcase" aria-hidden="true"></i><span>学生信息管理</span>
 										</a>
 									</li>
@@ -212,17 +213,21 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>学生X</td>
-													<td>201321150X</td>
-													<td>2013212XXX</td>
-													<td>90</td>
+												<s:iterator value="studentList">
+													<tr>
+													<td>${studentName }</td>
+													<td>${studentClass }</td>
+													<td>${studentID }</td>
+													<td>${score }</td>
 													<td>
-													  <a class="btn btn-success" href="studentdetail.jsp#">
+													  <a class="btn btn-success" href="ShowStudentDetail?studentID=${studentID }">
 														<i class="fa fa-search-plus "></i>                                            
 													  </a>
 													</td>
 												</tr>
+												</s:iterator>
+											
+												
 											</tbody>
 										</table>
 									</div>
@@ -266,7 +271,7 @@
 		<script src="assets/plugins/morris/js/morris.min.js"></script>
 		<script src="assets/plugins/gauge/js/gauge.min.js"></script>		
 		<script src="assets/plugins/d3/js/d3.min.js"></script>		
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
 		
 		<!-- Theme JS -->		
 		<script src="assets/js/jquery.mmenu.min.js"></script>
@@ -275,7 +280,22 @@
 		<!-- Pages JS -->
 		<script src="assets/js/pages/index.js"></script>
 		
+				<script>
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+		</script>
+		
+		
+		
 		<!-- end: JavaScript-->
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
+
 		
 	</body>
 	

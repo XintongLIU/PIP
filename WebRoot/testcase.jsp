@@ -134,8 +134,8 @@
 										</div>
 									</div>
 									<div class="divider2"></div>
-									<li>
-										<a href="index-student.jsp">
+									<li class="active">
+										<a href="projectDetailStateShow.action">  <!-- index-student.jsp -->
 											<i class="fa fa-laptop" aria-hidden="true"></i><span>检测流程</span>
 										</a>
 									</li>
@@ -144,13 +144,13 @@
 											<i class="fa fa-arrow-up" aria-hidden="true"></i><span>上传项目文档</span>
 										</a>
 									</li>
-									<li class="active">
-										<a href="testcase.jsp">
+									<li>
+										<a href="showTestCaseList.action">  <!-- testcase.jsp -->
 											<i class="fa fa-copy" aria-hidden="true"></i><span>选择测试用例</span>
 										</a>
 									</li>
 									<li>
-										<a href="queryscore.jsp">
+										<a href="projectDetailStatueAndScoreShow.action"><!-- queryscore.jsp -->
 											<i class="fa  fa-search" aria-hidden="true"></i><span>查询项目评分</span>
 										</a>
 									</li>
@@ -194,207 +194,83 @@
 								<div class="toggle active">
 									<label>功能测试</label>
 									<div class="toggle-content">
-									  <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
+									  <s:iterator value="functionTestCaseList" >
+									  		<div class="col-md-4">
+								            <div class="panel bk-bg-white">
+									          <div class="panel-heading bk-bg-primary">
+										        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>${testCaseID }</h6>
+										        <div style="text-align: right;">
+												  <label class="switch switch-primary bk-margin-top-10">
+												    <input type="checkbox" class="switch-input" checked="">
+													  <span class="switch-label" data-on="选择" data-off="取消"></span>
+													  <span class="switch-handle"></span>
+												  </label>
+												</div>
+									          </div>
+									          <div class="panel-body">
+										        <dl>
+										          <dt>主成功场景</dt>
+										          <dd>${content }</dd>
+										        </dl>            
+									         </div>
+								            </div>
+							              </div>
+									  </s:iterator>
 									</div>
 								</div>
 								<div class="toggle">
 									<label>性能测试</label>
 									<div class="toggle-content">
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
+						               <s:iterator value="performanceTestCaseList" >
+									  		<div class="col-md-4">
+								            <div class="panel bk-bg-white">
+									          <div class="panel-heading bk-bg-primary">
+										        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>${testCaseID }</h6>
+										        <div style="text-align: right;">
+												  <label class="switch switch-primary bk-margin-top-10">
+												    <input type="checkbox" class="switch-input" checked="">
+													  <span class="switch-label" data-on="选择" data-off="取消"></span>
+													  <span class="switch-handle"></span>
+												  </label>
+												</div>
+									          </div>
+									          <div class="panel-body">
+										        <dl>
+										          <dt>主成功场景</dt>
+										          <dd>${content }</dd>
+										        </dl>            
+									         </div>
+								            </div>
+							              </div>
+									  </s:iterator>	
 								</div>
 								<div class="toggle">
 									<label>压力测试</label>
 									<div class="toggle-content">
-									  <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
-						              <div class="col-md-4">
-							            <div class="panel bk-bg-white">
-								          <div class="panel-heading bk-bg-primary">
-									        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例x</h6>
-									        <div style="text-align: right;">
-											  <label class="switch switch-primary bk-margin-top-10">
-											    <input type="checkbox" class="switch-input" checked="">
-												  <span class="switch-label" data-on="选择" data-off="取消"></span>
-												  <span class="switch-handle"></span>
-											  </label>
-											</div>
-								          </div>
-								          <div class="panel-body">
-									        <dl>
-									          <dt>主成功场景</dt>
-									          <dd>blablabla</dd>
-									        </dl>            
-									        
-								         </div>
-							            </div>
-						              </div>	
+										<s:iterator value="stressTestCaseList" >
+									  		<div class="col-md-4">
+								            <div class="panel bk-bg-white">
+									          <div class="panel-heading bk-bg-primary">
+										        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>${testCaseID }</h6>
+										        <div style="text-align: right;">
+												  <label class="switch switch-primary bk-margin-top-10">
+												    <input type="checkbox" class="switch-input" checked="">
+													  <span class="switch-label" data-on="选择" data-off="取消"></span>
+													  <span class="switch-handle"></span>
+												  </label>
+												</div>
+									          </div>
+									          <div class="panel-body">
+										        <dl>
+										          <dt>主成功场景</dt>
+										          <dd>${content }</dd>
+										        </dl>            
+									         </div>
+								            </div>
+							              </div>
+									  </s:iterator>
 									</div>
 								</div>
-								
 							</div>
 						</div>
 					<!-- End of Your Content-->

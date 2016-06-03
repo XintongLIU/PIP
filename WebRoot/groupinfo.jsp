@@ -88,7 +88,7 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<div class="profile-info">
-								<span class="name">张三</span>
+								<span class="name"></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>
@@ -127,7 +127,7 @@
 											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small class="name"></small>
 										</div>
 									</div>
 									<div class="divider2"></div>
@@ -142,7 +142,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="onlinestudent.jsp">
+										<a href="OnlineStudent">
 											<i class="fa fa-user" aria-hidden="true"></i><span>在线学生信息</span>
 										</a>
 									</li>
@@ -152,7 +152,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="managestudentinfo.jsp">
+										<a href="ManageStudentInfo">
 											<i class="fa fa-briefcase" aria-hidden="true"></i><span>学生信息管理</span>
 										</a>
 									</li>
@@ -209,16 +209,16 @@
 													<th style="text-align: center;">详情</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>团队X</td>
-													<td>100</td>
-													<td>
-													  <a class="btn btn-success" href="groupdetail.jsp#">
-														<i class="fa fa-search-plus "></i>                                            
-													  </a>
-													</td>
-												</tr>
+											<tbody id="tbody_teamList">
+<!-- 												<tr> -->
+<!-- 													<td>团队X</td> -->
+<!-- 													<td>100</td> -->
+<!-- 													<td> -->
+<!-- 													  <a class="btn btn-success" href="groupdetail.jsp#"> -->
+<!-- 														<i class="fa fa-search-plus "></i>                                             -->
+<!-- 													  </a> -->
+<!-- 													</td> -->
+<!-- 												</tr> -->
 											</tbody>
 										</table>
 									</div>
@@ -240,6 +240,54 @@
 		<script src="assets/vendor/js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="assets/vendor/skycons/js/skycons.js"></script>		
+		
+		<script>
+			$.ajax({
+				url: "ShowTrTeam",
+				dataType: "json",
+				success: function(data){
+					$.each(data,function(i, list) {
+						var _tr =  '<tr>' +
+													'<td>' + list.teamName + '</td>' +
+													'<td>' + list.projectScore + '</td>' +
+													'<td>'+
+													  '<a class="btn btn-success" href="ShowTeamDetail?teamID='+ list.teamID  +'">'+
+														'<i class="fa fa-search-plus "></i>'   +                                          
+													  '</a>' +
+													'</td>'+
+												'</tr>';
+						$("#tbody_teamList").append(_tr);
+					
+					})
+				}
+			});
+		
+		
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+		
+		
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		<!-- Plugins JS-->		
 		<script src="assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
