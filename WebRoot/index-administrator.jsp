@@ -198,7 +198,7 @@ th {
 									</div>
 								</div>
 								<div class="divider2"></div>
-								<li class="active"><a href="index-administrator.jsp"> <i
+								<li class="active"><a href="ShowStudentList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>学生信息管理</span>
 								</a></li>
 								<li><a href="teacherinfo.jsp"> <i
@@ -322,7 +322,7 @@ th {
 												<td>${studentClass }</td>
 												<td>${teamID }</td>
 												<td>
-												  <a onclick="delTr(this);" href="DeleteStudent?studentID=${studentID }">删除</a>
+												  <input type="button" value="删除" onclick="delTr(this);">
 												
 											 	  <input type="button" value="修改" onclick="modTr(this);">
 												
@@ -505,6 +505,23 @@ th {
 				var tbody = document.getElementById("studentinfo");
 				tbody.removeChild(obj.parentNode.parentNode);//this指删除按钮，父节点为当前的td,父节点为当前的tr;
 				//每删除一行，后面的行数要都要减一，解决这个问题的思路：我直接获取执行删除按钮后tbody中的全部行，然后进行重新排列；
+				var tr = obj.parentNode.parentNode;
+				var tDs = tr.getElementsByTagName("td");
+				var studentID = tDs[1].innerHTML;
+				alert(studentID);
+				$.ajax({
+					url:"DeleteStudent",
+					data:{
+						"studentID": studentID
+					},
+					dataType:"json",
+					success:function(data){
+//	 					alert("success");
+					},
+					error:function(textStatus, errorThrown){
+						/* alert(errorThrown); */
+					}
+				});
 			} else {
 				return;
 			}
