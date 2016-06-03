@@ -4,7 +4,87 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<package name="wei" namespace="/" extends="struts-default">
-
-    </package>
+	<package name="wei" namespace="/" extends="struts-default,json-default">
+		<action name="uploadProjectfile" class="com.pip.action.FileAction"
+			method="uploadProjectFile">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="duplicate" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="uploadCode" class="com.pip.action.FileAction"
+			method="uploadCode">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="duplicate" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="uploadProjectDoc" class="com.pip.action.FileAction"
+			method="uploadProjectDoc">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="duplicate" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="uploadRecord" class="com.pip.action.FileAction"
+			method="uploadRecord">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="duplicate" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="showProjectfile" class="com.pip.action.FileAction"
+			method="showProjectFile">
+			<result type="json">
+				<param name="root">projectFileList</param>
+			</result>
+		</action>
+		<action name="showCode" class="com.pip.action.FileAction"
+			method="showCode">
+			<result type="json">
+				<param name="root">codeList</param>
+			</result>
+		</action>
+		<action name="showProjectDoc" class="com.pip.action.FileAction"
+			method="showProjectDoc">
+			<result type="json">
+				<param name="root">projectDocList</param>
+			</result>
+		</action>
+		<action name="showRecord" class="com.pip.action.FileAction"
+			method="showRecord">
+			<result type="json">
+				<param name="root">recordList</param>
+			</result>
+		</action>
+		<action name="deleteFile" class="com.pip.action.FileAction"
+			method="deleteFile">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>
