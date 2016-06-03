@@ -7,6 +7,7 @@
 	<package name="fu" namespace="/" extends="struts-default">
 		<action name="AddStudent" class="com.pip.action.AddStudentAction">
 			<result name="success">index-administrator.jsp</result>
+			<result name="fail">index-administrator.jsp</result>
 		</action>
 		<action name="DeleteStudent" class="com.pip.action.DeleteStudentAction">
 			<result name="success">index-administrator.jsp</result>

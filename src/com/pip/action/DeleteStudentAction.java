@@ -7,9 +7,9 @@ public class DeleteStudentAction {
 	
 	StudentServiceImpl studentService;
 	Student student;
-	
+	Integer studentID;
 	public String execute(){
-		studentService.deleteStudent(student.getStudentID());
+		studentService.deleteStudent(studentID);
 		
 		return "success";
 		
@@ -29,6 +29,14 @@ public class DeleteStudentAction {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public Integer getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(Integer studentID) {
+		this.studentID = studentID;
 	}
 	
 }
