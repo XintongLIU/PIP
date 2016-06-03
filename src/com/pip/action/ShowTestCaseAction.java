@@ -25,13 +25,10 @@ public class ShowTestCaseAction {
 		for(int i = 0; i < 15; i++){
 			if(i < 5){
 				functionTestCaseList.add(testCaseList.get(i));
-				System.out.println(i);
 			}else if( i < 10){
 				performanceTestCaseList.add(testCaseList.get(i));
-				System.out.println(i);
 			}else{
 				stressTestCaseList.add(testCaseList.get(i));
-				System.out.println(i);
 			}
 		}
 		

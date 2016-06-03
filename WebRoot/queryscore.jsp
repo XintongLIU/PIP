@@ -125,8 +125,8 @@
 										</div>
 									</div>
 									<div class="divider2"></div>
-									<li>
-										<a href="index-student.jsp">
+									<li class="active">
+										<a href="projectDetailStateShow.action">  <!-- index-student.jsp -->
 											<i class="fa fa-laptop" aria-hidden="true"></i><span>检测流程</span>
 										</a>
 									</li>
@@ -136,12 +136,12 @@
 										</a>
 									</li>
 									<li>
-										<a href="testcase.jsp">
+										<a href="showTestCaseList.action">  <!-- testcase.jsp -->
 											<i class="fa fa-copy" aria-hidden="true"></i><span>选择测试用例</span>
 										</a>
 									</li>
-									<li class="active">
-										<a href="queryscore.jsp">
+									<li>
+										<a href="projectDetailStatueAndScoreShow.action"><!-- queryscore.jsp -->
 											<i class="fa  fa-search" aria-hidden="true"></i><span>查询项目评分</span>
 										</a>
 									</li>
