@@ -39,6 +39,17 @@ public class ShowProjectDetailAction {
 	public void setTotalScore(int totalScore) {
 		this.totalScore = totalScore;
 	}
+	
+
+	public IProjectDetailService getProjectDetailStateService() {
+		return projectDetailStateService;
+	}
+
+
+	public void setProjectDetailStateService(
+			IProjectDetailService projectDetailStateService) {
+		this.projectDetailStateService = projectDetailStateService;
+	}
 
 
 	public String showState(){
@@ -47,9 +58,10 @@ public class ShowProjectDetailAction {
 		
 		List<ProjectScore> projectDetailList  = new ArrayList<ProjectScore>(); 
 		int studentId = 1;
-		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
+//		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
+		projectDetailList = projectDetailStateService.showProjectDetailListByProjectID(1);
 		
-		for(int i = 0; i < 6; i++){//projectDetailList.size()
+		for(int i = 0; i < 6; i++){
 			projectDetail.add(projectDetailList.get(i).getProjectState());
 		}
 		
@@ -62,12 +74,13 @@ public class ShowProjectDetailAction {
 		score = new ArrayList<Integer>();
 		List<ProjectScore> projectDetailList  = new ArrayList<ProjectScore>(); 	
 		int studentId = 1;
-		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
+//		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
+		projectDetailList = projectDetailStateService.showProjectDetailListByProjectID(1);	
 		
-		for(int i = 0; i < projectDetailList.size(); i++){//
+		for(int i = 6, j = 0; i < projectDetailList.size(); i++,j++){//
 			projectDetail.add(projectDetailList.get(i).getProjectState());
 			score.add(projectDetailList.get(i).getProjectScore());
-			totalScore += score.get(i);
+			totalScore += score.get(j);
 		}
 		return "success";
 	}

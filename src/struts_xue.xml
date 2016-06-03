@@ -11,6 +11,9 @@
 		<action name="projectDetailStatueAndScoreShow" class="com.pip.action.ShowProjectDetailAction" method="showStateAndScore">
 			<result name="success">/queryscore.jsp</result>
 		</action>
+		<action name="showTestCaseList" class="com.pip.action.ShowTestCaseAction" method="showTestCaseList">
+			<result name="success">/testcase.jsp</result>
+		</action>
 
     </package>
 </struts>

@@ -102,7 +102,10 @@
 	<bean id="teamDAO" class="com.pip.dao.impl.TeamDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+	
+	<bean id="testCaseDao" class="com.pip.dao.impl.TestCaseDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<bean id="helloWorldService" class="com.pip.service.impl.HelloWorldServiceImpl">
 		<property name="newsDao" ref="newsDao" />
@@ -138,4 +141,11 @@
 		<property name="projectScoreDAO" ref="projectScoreDAO"/>
 	</bean>
 
+	<bean id="projectDetailStateService" class="com.pip.service.impl.ProjectDetailServiceImpl">
+		<property name="projectScoreDAO" ref="projectScoreDAO" />
+	</bean>
+	
+	<bean id="testCaseService" class="com.pip.service.impl.TestCaseServiceImpl">
+		<property name="testCaseDao" ref="testCaseDao" />
+	</bean>
 </beans>
