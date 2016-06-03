@@ -4,9 +4,10 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 <constant name="struts.devMode" value="true" />
-	<package name="fu" namespace="/" extends="struts-default">
+	<package name="fu" namespace="/" extends="struts-default,json-default">
 		<action name="AddStudent" class="com.pip.action.AddStudentAction">
 			<result name="success">index-administrator.jsp</result>
+			<result name="fail">index-administrator.jsp</result>
 		</action>
 		<action name="DeleteStudent" class="com.pip.action.DeleteStudentAction">
 			<result name="success">index-administrator.jsp</result>
@@ -14,8 +15,10 @@
 		<action name="ShowStudentList" class="com.pip.action.ShowStudentListAction">
 			<result name="success">index-administrator.jsp</result>
 		</action>
-		<action name="UpdateStudent" class="com.pip.action.UpdateStudentAction">
-			<result name="success">index-administrator.jsp</result>
+		<action name="UpdateStudent" class="com.pip.action.UpdateStudentAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>>
+			</result>
 		</action>
 
     </package>

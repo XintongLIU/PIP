@@ -19,5 +19,11 @@
 			<param name="root">trTeamList</param>>
 		</result>
 	</action>
+	
+	<action name="ShowProjectDetailScore" class="com.pip.action.ShowProjectDetailScoreAction" method="execute">
+		<result name="success" type="json">
+			<param name="root">projectScoreList</param>>
+		</result>
+	</action>
 </package>
 </struts>

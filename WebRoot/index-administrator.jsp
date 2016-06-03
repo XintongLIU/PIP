@@ -247,7 +247,7 @@ th {
 							</h6>
 						</div>
 						<div class="panel-body">
-							<form class="form-horizontal ">
+							<form class="form-horizontal " action="AddStudent.action">
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">姓名</label>
 									<div class="col-sm-6">
@@ -258,7 +258,7 @@ th {
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">学号</label>
 									<div class="col-sm-6">
-										<input type="text" id="idInput" name="studentID"
+										<input type="text" id="idInput" name="studentNum"
 											class="form-control" placeholder="学号">
 									</div>
 								</div>
@@ -272,12 +272,13 @@ th {
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">组号</label>
 									<div class="col-sm-6">
-										<input type="text" id="groupInput" name="teamID"
+										<input type="text" id="groupInput" name="teamNum"
 											class="form-control" placeholder="组号">
 									</div>
 								</div>
 								<div class="col-sm-offset-4">
-									<a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()" href="AddStudent">添加</a>
+									<!-- <a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()" href="AddStudent.action">添加</a> -->
+									<input class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()" type="submit" value="提交">
 								</div>
 							</form>
 						</div>
@@ -312,17 +313,33 @@ th {
 										</tr>
 									</thead>
 									<tbody id="studentinfo">
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>2013212XXX</td>
-											<td>学生X</td>
-											<td>201321250X</td>
-											<td>3</td>
-											<td>
-											  <input type="button" value="删除" onclick="delTr(this);">
-											  <input type="button" value="修改" onclick="modTr(this);">
-											</td>
-										</tr>
+										<s:iterator value="studentList">
+											
+											<tr>
+												<td><input type="checkbox"></td>
+												<td>${studentID }</td>
+												<td>${studentName }</td>
+												<td>${studentClass }</td>
+												<td>${teamID }</td>
+												<td>
+												  <a onclick="delTr(this);" href="DeleteStudent?studentID=${studentID }">删除</a>
+												
+											 	  <input type="button" value="修改" onclick="modTr(this);">
+												
+												</td>
+											
+<!-- 											<td><input type="checkbox"></td> -->
+<!-- 											<td>2013212XXX</td> -->
+<!-- 											<td>学生X</td> -->
+<!-- 											<td>201321250X</td> -->
+<!-- 											<td>3</td> -->
+<!-- 											<td> -->
+<!-- 											  <input type="button" value="删除" onclick="delTr(this);"> -->
+<!-- 											  <input type="button" value="修改" onclick="modTr(this);"> -->
+<!-- 											</td> -->
+											</tr>
+											
+										</s:iterator>
 									</tbody>
 								</table>
 							</div>
@@ -408,9 +425,9 @@ th {
 
 	<!-- Pages JS -->
 	<script type="text/javascript">
-		var $ = function(id) {
-			return document.getElementById(id);
-		}
+// 		var $ = function(id) {
+// 			return document.getElementById(id);
+// 		}
 		var createObj = function(tagName) {
 			return document.createElement(tagName);
 		}
@@ -549,6 +566,8 @@ th {
 			//隐藏遮罩层
 			cancleBtn();
 			//3.获得主页中的数据,将修改的数据填入到主页中,
+			
+			
 			var tbody = document.getElementById("studentinfo");
 			var rows = tbody.rows.length; //获得所有的行
 			for (var i = 0; i < rows; i++) {
@@ -564,6 +583,24 @@ th {
 					}
 				}
 			}
+			
+			$.ajax({
+				//type:"post",
+				url:"UpdateStudent",
+				data:{
+					"studentClass": classTxt,
+					"teamNum":groupTxt,
+					"studentID":idTxt
+				},
+				dataType:"json",
+				success:function(data){
+// 					alert("success");
+				},
+				error:function(textStatus, errorThrown){
+					/* alert(errorThrown); */
+				}
+			});
+			alert("haahhaahaah");
 		}
 
 		//全选

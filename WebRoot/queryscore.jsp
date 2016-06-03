@@ -224,7 +224,7 @@
 													</td>
 													<td>功能检测</td>
 													<td>
-													  	<s:if test="projectDetail[0] == 1">
+													  	<s:if test="projectDetail[1] == 1">
 															<span class="label label-success">成功</span>
 														</s:if>
 														<s:else>
@@ -239,7 +239,7 @@
 													</td>
 													<td>性能检测</td>
 													<td>
-												      	<s:if test="projectDetail[0] == 1">
+												      	<s:if test="projectDetail[2] == 1">
 															<span class="label label-success">成功</span>
 														</s:if>
 														<s:else>
@@ -254,7 +254,7 @@
 													</td>
 													<td>压力测试</td>
 													<td>
-												      	<s:if test="projectDetail[0] == 1">
+												      	<s:if test="projectDetail[3] == 1">
 															<span class="label label-success">成功</span>
 														</s:if>
 														<s:else>
@@ -269,7 +269,7 @@
 													</td>
 													<td>代码检测</td>
 													<td>
-												      	<s:if test="projectDetail[0] == 1">
+												      	<s:if test="projectDetail[4] == 1">
 															<span class="label label-success">成功</span>
 														</s:if>
 														<s:else>
@@ -284,7 +284,7 @@
 													</td>
 													<td>文档检测</td>
 													<td>
-												      	<s:if test="projectDetail[0] == 1">
+												      	<s:if test="projectDetail[5] == 1">
 															<span class="label label-success">成功</span>
 														</s:if>
 														<s:else>

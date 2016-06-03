@@ -4,12 +4,13 @@
 <hibernate-mapping package="com.pip.domain">
 	<class name="ProjectScore" table="projectscore">
 		<cache usage="read-write" /> <!-- 缓存 -->
-		<id name="projectID" column="project_projectID" type="int">
-			<generator class="identity"/>
+		<id name="detailID" column="detailID" type="int" >
+			<generator class="increment"/>
 		</id>
+		<property name="projectID" column="project_projectID" type="int"/>
 		<property name="detailName" column="detailName" length="45" type="string" />
 		<property name="projectState" column="projectState" type="int" />
 		<property name="projectScore" column="projectScore" type="int" />
-		<property name="detailID" column="detailID" type="int" />
+		<property name="detailType" column="detailType" type="int" />
 	</class>
 </hibernate-mapping>
