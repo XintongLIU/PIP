@@ -148,4 +148,8 @@
 	<bean id="testCaseService" class="com.pip.service.impl.TestCaseServiceImpl">
 		<property name="testCaseDao" ref="testCaseDao" />
 	</bean>
+	
+	<bean id="teacherService" class="com.pip.service.impl.TeacherServiceImpl">
+		<property name="teacherDAO" ref="teacherDAO" />
+	</bean>
 </beans>

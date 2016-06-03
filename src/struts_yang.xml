@@ -42,6 +42,12 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		
+		<action name="GetUserName" class="com.pip.action.GetUserNameAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 
     </package>
 </struts>
