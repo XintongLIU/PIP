@@ -48,6 +48,10 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		
+		<action name="Logout" class="com.pip.action.LogoutAction">
+			<result>/login.jsp</result>
+		</action>
 
     </package>
 </struts>
