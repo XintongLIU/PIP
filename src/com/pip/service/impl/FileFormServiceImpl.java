@@ -7,19 +7,30 @@ import java.util.List;
 
 import com.pip.domain.FileForm;
 import com.pip.domain.Student;
+import com.pip.domain.Team;
 import com.pip.dao.IFileFormDAO;
 import com.pip.dao.IStudentDAO;
+import com.pip.dao.ITeamDAO;
 import com.pip.service.IFileFormService;
 
 public class FileFormServiceImpl implements IFileFormService {
 
 	IFileFormDAO fileDao;
 	IStudentDAO studentDAO;
+	ITeamDAO teamDAO;
 	
 	@Override
 	public Integer getCurrentProjectID(Integer studentID) {
 		Student currentstudent = studentDAO.findStudentById(studentID);
 		return currentstudent.getProjectID();
+	}
+	
+
+	@Override
+	public Integer getCurrentProjectIDbyTeamID(Integer teamID) {
+		// TODO Auto-generated method stub
+		Team currentteam = teamDAO.findTeamById(teamID);
+		return currentteam.getProjectID();
 	}
 	
 	@Override
@@ -105,6 +116,14 @@ public class FileFormServiceImpl implements IFileFormService {
 
 	public void setStudentDAO(IStudentDAO studentDAO) {
 		this.studentDAO = studentDAO;
+	}
+
+	public ITeamDAO getTeamDAO() {
+		return teamDAO;
+	}
+
+	public void setTeamDAO(ITeamDAO teamDAO) {
+		this.teamDAO = teamDAO;
 	}
 
 }

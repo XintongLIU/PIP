@@ -17,6 +17,7 @@ public class FileAction {
 	String result;
 	Integer userID;
 	Integer fileID;
+	Integer teamID;
 	IFileFormService fileFormService;
 	List<FileForm> projectFileList;
 	List<FileForm> codeList;
@@ -71,6 +72,14 @@ public class FileAction {
 	public void setFileID(Integer fileID) {
 		this.fileID = fileID;
 	}
+	
+	public Integer getTeamID() {
+		return teamID;
+	}
+
+	public void setTeamID(Integer teamID) {
+		this.teamID = teamID;
+	}
 
 	public IFileFormService getFileFormService() {
 		return fileFormService;
@@ -115,7 +124,11 @@ public class FileAction {
 	Integer getCurrentProjectId(){
 		Map session = ActionContext.getContext().getSession();
 		Integer userID = (Integer) session.get("userID");
-		return fileFormService.getCurrentProjectID(userID);
+		Integer userType = (Integer) session.get("userType");
+		if(userType == 1)
+		  return fileFormService.getCurrentProjectID(userID);
+		else
+		  return fileFormService.getCurrentProjectIDbyTeamID(teamID);
 	}
 	
 	// 上传项目工程文件
