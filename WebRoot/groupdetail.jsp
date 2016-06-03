@@ -313,37 +313,37 @@
 												<s:if test="#ps.detailType == 2">
 												<tr>
 													<td>首页检测</td>
-													<td><a href="#" id="deploy" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
+													<td><a href="#" id="index" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
 												</tr>
 												</s:if>
 												<s:if test="#ps.detailType == 3">
 												<tr>
 													<td>功能测试</td>
-													<td><a href="#" id="deploy" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
+													<td><a href="#" id="function" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
 												</tr>
 												</s:if>
 												<s:if test="#ps.detailType == 4">
 												<tr>
 													<td>性能测试</td>
-													<td><a href="#" id="deploy" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
+													<td><a href="#" id="performance" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
 												</tr>
 												</s:if>
 												<s:if test="#ps.detailType == 5">
 												<tr>
 													<td>压力测试</td>
-													<td><a href="#" id="deploy" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
+													<td><a href="#" id="stress" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
 												</tr>
 												</s:if>
 												<s:if test="#ps.detailType == 6">
 												<tr>
 													<td>代码检测</td>
-													<td><a href="#" id="deploy" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
+													<td><a href="#" id="code" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
 												</tr>
 												</s:if>
 												<s:if test="#ps.detailType == 7">
 												<tr>
 													<td>文档检测</td>
-													<td><a href="#" id="deploy" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
+													<td><a href="#" id="document" data-type="text" data-original-title="部署系统得分" class="editable editable-click editable-disabled">${projectScore}</a></td>
 												</tr>
 												</s:if>
 												</s:iterator>     
