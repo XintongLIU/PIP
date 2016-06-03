@@ -2,9 +2,11 @@ package com.pip.action;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.pip.domain.FileForm;
 import com.pip.service.IFileFormService;
 
@@ -109,10 +111,16 @@ public class FileAction {
 	public void setRecordList(List<FileForm> recordList) {
 		this.recordList = recordList;
 	}
-
+	
+	Integer getCurrentProjectId(){
+		Map session = ActionContext.getContext().getSession();
+		Integer userID = (Integer) session.get("userID");
+		return fileFormService.getCurrentProjectID(userID);
+	}
+	
 	// 上传项目工程文件
 	public String uploadProjectFile() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
 		String path = "uploadfiles/projectfiles/" + projectID + "/"
 				+ fileFileName;
@@ -129,7 +137,7 @@ public class FileAction {
 
 	// 上传项目源代码文件
 	public String uploadCode() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
 		String path = "uploadfiles/sourcecode/" + projectID + "/"
 				+ fileFileName;
@@ -146,7 +154,7 @@ public class FileAction {
 
 	// 上传项目文档
 	public String uploadProjectDoc() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
 		String path = "uploadfiles/projectrecords/" + projectID + "/"
 				+ fileFileName;
@@ -163,7 +171,7 @@ public class FileAction {
 
 	// 上传项目工时文档
 	public String uploadRecord() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
 		String path = "uploadfiles/projectdocs/" + projectID + "/"
 				+ fileFileName;
@@ -180,28 +188,28 @@ public class FileAction {
 
 	// 获取项目工程文件
 	public String showProjectFile() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		projectFileList = fileFormService.showProjectFile(projectID);
 		return "success";
 	}
 
 	// 获取项目源代码文件
 	public String showCode() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		codeList = fileFormService.showCode(projectID);
 		return "success";
 	}
 
 	// 获取项目工程文档
 	public String showProjectDoc() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		projectDocList = fileFormService.showProjectDoc(projectID);
 		return "success";
 	}
 
 	// 获取项目工时记录
 	public String showRecord() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		recordList = fileFormService.showRecord(projectID);
 		return "success";
 	}

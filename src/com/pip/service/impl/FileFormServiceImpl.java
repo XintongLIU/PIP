@@ -6,13 +6,22 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import com.pip.domain.FileForm;
+import com.pip.domain.Student;
 import com.pip.dao.IFileFormDAO;
+import com.pip.dao.IStudentDAO;
 import com.pip.service.IFileFormService;
 
 public class FileFormServiceImpl implements IFileFormService {
 
 	IFileFormDAO fileDao;
-
+	IStudentDAO studentDAO;
+	
+	@Override
+	public Integer getCurrentProjectID(Integer studentID) {
+		Student currentstudent = studentDAO.findStudentById(studentID);
+		return currentstudent.getProjectID();
+	}
+	
 	@Override
 	public String uploadFile(FileForm fileform, File file, String absolutepath) {
 		if (fileDao.findFileByPath(fileform.getPath()).size() != 0)
@@ -88,6 +97,14 @@ public class FileFormServiceImpl implements IFileFormService {
 
 	public void setFileDao(IFileFormDAO fileDao) {
 		this.fileDao = fileDao;
+	}
+
+	public IStudentDAO getStudentDAO() {
+		return studentDAO;
+	}
+
+	public void setStudentDAO(IStudentDAO studentDAO) {
+		this.studentDAO = studentDAO;
 	}
 
 }

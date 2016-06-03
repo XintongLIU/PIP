@@ -151,6 +151,7 @@
 	
 	<bean id="fileFormService" class="com.pip.service.impl.FileFormServiceImpl">
 	    <property name="fileDao" ref="fileDao" />
+	    <property name="studentDAO" ref="studentDAO" />
 	</bean>
 
 </beans>
