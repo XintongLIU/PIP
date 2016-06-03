@@ -44,6 +44,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/pip/domain/News.hbm.xml</value>
+				<value>com/pip/domain/FileForm.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -70,9 +71,16 @@
     <bean id="newsDao" class="com.pip.dao.impl.NewsDaoImpl">
  		<property name="sessionFactory" ref="sessionFactory" />    <!-- 除了action类是自动装配，其他的类都需要显示的写出注入 -->
 	</bean>
+	
+    <bean id="fileDao" class="com.pip.dao.impl.FileFormDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
     
 	<bean id="helloWorldService" class="com.pip.service.impl.HelloWorldServiceImpl">
 		<property name="newsDao" ref="newsDao" />
 	</bean>     <!-- action默认是自动装配的 -->
-
+	
+	<bean id="fileFormService" class="com.pip.service.impl.FileFormServiceImpl">
+	    <property name="fileDao" ref="fileDao" />
+	</bean>
 </beans>
