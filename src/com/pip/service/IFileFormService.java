@@ -13,4 +13,5 @@ public interface IFileFormService {
 	List<FileForm> showCode(int projectID);
 	List<FileForm> showProjectDoc(int projectID);
 	List<FileForm> showRecord(int projectID);
+	String deploy(int projectID, String directory); 
 }

@@ -23,7 +23,7 @@ public class FileAction {
 	List<FileForm> codeList;
 	List<FileForm> projectDocList;
 	List<FileForm> recordList;
-
+	String projectfilename;
 	// Getters and Setters
 	public File getFile() {
 		return file;
@@ -121,6 +121,14 @@ public class FileAction {
 		this.recordList = recordList;
 	}
 	
+	public String getProjectfilename() {
+		return projectfilename;
+	}
+
+	public void setProjectfilename(String projectfilename) {
+		this.projectfilename = projectfilename;
+	}
+
 	Integer getCurrentProjectId(){
 		Map session = ActionContext.getContext().getSession();
 		Integer userID = (Integer) session.get("userID");
@@ -235,6 +243,14 @@ public class FileAction {
 			result = "success";
 		else
 			result = "fail";
+		return result;
+	}
+	
+	//部署工程
+	public String deploy(){
+		int projectID = getCurrentProjectId();
+		String directory = ServletActionContext.getServletContext().getRealPath("/");
+		result = fileFormService.deploy(projectID, directory);
 		return result;
 	}
 }

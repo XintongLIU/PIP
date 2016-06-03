@@ -86,5 +86,17 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="deploy" class="com.pip.action.FileAction"
+			method="deploy">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="duplicate" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 	</package>
 </struts>

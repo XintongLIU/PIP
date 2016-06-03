@@ -214,7 +214,7 @@
 														</s:else>
 													</td>
 													<td>
-														<a class="btn btn-success" href="">
+														<a class="btn btn-success" href="uploadfile.jsp">
 															<i class="fa fa-search-plus "></i>                                            
 														</a>
 													</td>
