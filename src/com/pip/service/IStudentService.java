@@ -10,4 +10,5 @@ public interface IStudentService {
 	void updateStudent(Student student);
 	Student selectStudent(Integer id);
 	List<Student> showStudentList();
+	List<Student> showStudentByTeacherID(Integer teacherID);
 }

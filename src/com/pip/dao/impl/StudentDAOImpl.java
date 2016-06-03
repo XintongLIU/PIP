@@ -47,7 +47,6 @@ public class StudentDAOImpl extends HibernateDaoSupport implements IStudentDAO{
 	
 	@Override
 	public void update(Student student){
-		System.out.println("ssssssssssss");
 		getHibernateTemplate().update(student);
 	}
 
@@ -56,6 +55,9 @@ public class StudentDAOImpl extends HibernateDaoSupport implements IStudentDAO{
 		return (List<Student>)getHibernateTemplate().find("from Student s where s.teamID=?", teamID);
 	}
 
+	public List<Student> findStudentByTeacherID(Integer teacherID){
+		return (List<Student>)getHibernateTemplate().find("from Student s where s.teacherID=?", teacherID);
+	}
 	
 
 }

@@ -1,5 +1,8 @@
 package com.pip.action;
 
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.pip.domain.Student;
 import com.pip.service.IStudentService;
 
@@ -28,6 +31,9 @@ public class EnterStudentInfoAction {
 			student.setStudentName(studentName);
 			student.setStudentClass(studentClass);
 			student.setTeamID(teamID);
+			Map session = ActionContext.getContext().getSession();
+			Integer teacherID = (Integer)session.get("userID");
+			student.setTeacherID(teacherID);
 			studentService.insertStudent(student);
 			result = "SUCCESS " + studentID;
 		}

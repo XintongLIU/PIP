@@ -216,7 +216,7 @@
 							<div class="row text-center"> 
 							<a class="col-xs-12 bk-vcenter bk-bg-white bk-bg-darken bk-padding-top-10 bk-padding-bottom-10">
 									<small class="bk-fg-inverse bk-fg-darken">登陆时间</small>
-									<h4 class="bk-margin-off-bottom">${loginTime }</h4>
+									<h4 class="bk-margin-off-bottom"><s:if test="loginTime==null">无登录记录</s:if><s:else><s:date name="loginTime" format="yyyy/MM/dd HH:mm:ss" /></s:else></h4>
 								</a>
 							</div>
 						</div>

@@ -13,4 +13,5 @@ public interface IStudentDAO {
 	public Student findStudentByName(String studentName);	
 	public void update(Student student);
 	public List<Student> findStudentByTeamID(Integer teamID);
+	public List<Student> findStudentByTeacherID(Integer teacherID);
 }

@@ -42,6 +42,11 @@ public class StudentServiceImpl implements IStudentService {
 		return studentDAO.findAll();
 	}
 
+	public List<Student> showStudentByTeacherID(Integer teacherID){
+		return studentDAO.findStudentByTeacherID(teacherID);
+	}
+	
+	
 	public IStudentDAO getStudentDAO() {
 		return studentDAO;
 	}
