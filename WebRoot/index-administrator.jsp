@@ -425,9 +425,9 @@ th {
 
 	<!-- Pages JS -->
 	<script type="text/javascript">
-		var $ = function(id) {
-			return document.getElementById(id);
-		}
+// 		var $ = function(id) {
+// 			return document.getElementById(id);
+// 		}
 		var createObj = function(tagName) {
 			return document.createElement(tagName);
 		}
@@ -566,6 +566,8 @@ th {
 			//隐藏遮罩层
 			cancleBtn();
 			//3.获得主页中的数据,将修改的数据填入到主页中,
+			
+			
 			var tbody = document.getElementById("studentinfo");
 			var rows = tbody.rows.length; //获得所有的行
 			for (var i = 0; i < rows; i++) {
@@ -581,6 +583,24 @@ th {
 					}
 				}
 			}
+			
+			$.ajax({
+				//type:"post",
+				url:"UpdateStudent",
+				data:{
+					"studentClass": classTxt,
+					"teamNum":groupTxt,
+					"studentID":idTxt
+				},
+				dataType:"json",
+				success:function(data){
+// 					alert("success");
+				},
+				error:function(textStatus, errorThrown){
+					/* alert(errorThrown); */
+				}
+			});
+			alert("haahhaahaah");
 		}
 
 		//全选

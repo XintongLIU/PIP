@@ -47,6 +47,7 @@ public class StudentDAOImpl extends HibernateDaoSupport implements IStudentDAO{
 	
 	@Override
 	public void update(Student student){
+		System.out.println("ssssssssssss");
 		getHibernateTemplate().update(student);
 	}
 
