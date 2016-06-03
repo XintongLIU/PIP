@@ -109,10 +109,6 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="helloWorldService" class="com.pip.service.impl.HelloWorldServiceImpl">
-		<property name="newsDao" ref="newsDao" />
-	</bean>     <!-- action默认是自动装配的 -->
-
 	<bean id="addressService" class="com.pip.service.impl.AddressServiceImpl">
 		<property name="addressDAO" ref="addressDAO" />
 	</bean>
