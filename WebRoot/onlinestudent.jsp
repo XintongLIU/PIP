@@ -131,7 +131,7 @@
 							<ul class="nav nav-sidebar">
 								<div class="panel-body text-center">
 									<div class="bk-avatar">
-										<img src="assets/img/avatar.jpg" class="img-circle bk-img-60"
+										<img src="assets/img/teacher.png" class="img-circle bk-img-60"
 											alt="" />
 									</div>
 									<div class="bk-padding-top-10">
@@ -200,7 +200,7 @@
 								class="img-responsive">
 							<div class="bk-avatar bk-avatar80-halfdown">
 								<div class="bk-vcenter"></div>
-								<a href="#"> <img src="assets/img/avatar1.jpg" alt=""
+								<a href="#"> <img src="assets/img/student.png" alt=""
 									class="img-circle bk-img-80 bk-border-info bk-border-darken bk-border-3x">
 								</a>
 							</div>
@@ -279,8 +279,6 @@
 </script>
 	<!-- Pages JS -->
 	<script src="assets/js/pages/index.js"></script>
-<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<!-- end: JavaScript-->
 
 

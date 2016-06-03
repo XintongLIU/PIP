@@ -190,7 +190,7 @@ th {
 							<ul class="nav nav-sidebar">
 								<div class="panel-body text-center">
 									<div class="bk-avatar">
-										<img src="assets/img/avatar.jpg" class="img-circle bk-img-60"
+										<img src="assets/img/administrator.png" class="img-circle bk-img-60"
 											alt="" />
 									</div>
 									<div class="bk-padding-top-10">
@@ -369,8 +369,7 @@ th {
 
 	<!-- Plugins JS-->
 	<script src="assets/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
-	<script
-		src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="assets/plugins/bootkit/js/bootkit.js"></script>
 	<script src="assets/plugins/moment/js/moment.min.js"></script>
 	<script src="assets/plugins/fullcalendar/js/fullcalendar.min.js"></script>
@@ -383,8 +382,6 @@ th {
 	<script src="assets/plugins/xcharts/js/xcharts.min.js"></script>
 	<script src="assets/plugins/autosize/jquery.autosize.min.js"></script>
 	<script src="assets/plugins/placeholder/js/jquery.placeholder.min.js"></script>
-	<script src="assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
-	<script src="assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/raphael/js/raphael.min.js"></script>
 	<script src="assets/plugins/morris/js/morris.min.js"></script>
 	<script src="assets/plugins/gauge/js/gauge.min.js"></script>
@@ -394,6 +391,15 @@ th {
 	<script src="assets/js/core.min.js"></script>
 
 	<!-- Pages JS -->
+	<script>
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+	</script>
 	<script type="text/javascript">
 		var $ = function(id) {
 			return document.getElementById(id);
@@ -594,18 +600,7 @@ th {
 			}
 		}
 	</script>
-
 	<!-- end: JavaScript-->
-	
-	<script>
-			$.ajax({
-				url: "GetUserName",
-				dataType: "json",
-				success: function(data){
-					$(".name").html(data);
-				}
-			})
-	</script>
 
 </body>
 

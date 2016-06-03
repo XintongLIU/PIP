@@ -110,7 +110,7 @@ td {
 				<div class="userbox">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<div class="profile-info">
-							<span class="name">张三</span>
+							<span class="name"></span>
 						</div> <i class="fa custom-caret"></i>
 					</a>
 					<div class="dropdown-menu">
@@ -144,24 +144,24 @@ td {
 							<ul class="nav nav-sidebar">
 								<div class="panel-body text-center">
 									<div class="bk-avatar">
-										<img src="assets/img/avatar.jpg" class="img-circle bk-img-60"
+										<img src="assets/img/student.png" class="img-circle bk-img-60"
 											alt="" />
 									</div>
 									<div class="bk-padding-top-10">
-										<i class="fa fa-circle text-success"></i> <small>张三</small>
+										<i class="fa fa-circle text-success"></i> <small class="name"></small>
 									</div>
 								</div>
 								<div class="divider2"></div>
-								<li><a href="index-student.jsp"> <i
+								<li><a href="projectDetailStateShow.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>检测流程</span>
 								</a></li>
 								<li class="active"><a href="uploadfile.jsp"> <i
 										class="fa fa-arrow-up" aria-hidden="true"></i><span>上传项目文档</span>
 								</a></li>
-								<li><a href="testcase.jsp"> <i class="fa fa-copy"
+								<li><a href="showTestCaseList.action"> <i class="fa fa-copy"
 										aria-hidden="true"></i><span>选择测试用例</span>
 								</a></li>
-								<li><a href="queryscore.jsp"> <i class="fa  fa-search"
+								<li><a href="projectDetailStatueAndScoreShow.action"> <i class="fa  fa-search"
 										aria-hidden="true"></i><span>查询项目评分</span>
 								</a></li>
 							</ul>
@@ -646,6 +646,13 @@ td {
 	    }
 	    //加载页面时执行的函数
 		$(document).ready(function() {
+		$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+	    });
         showProjectFile();
         showCode();
         showProjectDoc();

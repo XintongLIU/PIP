@@ -126,7 +126,7 @@
 								<ul class="nav nav-sidebar">
 									<div class="panel-body text-center">								
 										<div class="bk-avatar">
-											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
+											<img src="assets/img/teacher.png" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
 											<i class="fa fa-circle text-success"></i> <small class="name"></small>
@@ -207,7 +207,7 @@
 										<div class="row">
 											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-center">                     
 												<div class="bk-avatar">
-													<img src="assets/img/avatar.jpg" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">
+													<img src="assets/img/student.png" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">
 												</div>
 												<h4 class="bk-margin-top-10 bk-docs-font-weight-300">
 												  <a href="#" id="a_studentName" data-type="text" data-original-title="学生姓名" class="editable editable-click editable-disabled">${student.studentName }</a>

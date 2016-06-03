@@ -90,7 +90,7 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<div class="profile-info">
-								<span class="name">张三</span>
+								<span class="name"></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>
@@ -127,14 +127,14 @@
 								<ul class="nav nav-sidebar">
 									<div class="panel-body text-center">								
 										<div class="bk-avatar">
-											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
+											<img src="assets/img/student.png" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
-											<i class="fa fa-circle text-success"></i> <small>张三</small>
+											<i class="fa fa-circle text-success"></i> <small class="name"></small>
 										</div>
 									</div>
 									<div class="divider2"></div>
-									<li class="active">
+									<li>
 										<a href="projectDetailStateShow.action">  <!-- index-student.jsp -->
 											<i class="fa fa-laptop" aria-hidden="true"></i><span>检测流程</span>
 										</a>
@@ -144,7 +144,7 @@
 											<i class="fa fa-arrow-up" aria-hidden="true"></i><span>上传项目文档</span>
 										</a>
 									</li>
-									<li>
+									<li class="active">
 										<a href="showTestCaseList.action">  <!-- testcase.jsp -->
 											<i class="fa fa-copy" aria-hidden="true"></i><span>选择测试用例</span>
 										</a>
@@ -303,7 +303,15 @@
 		<script src="assets/js/pages/ui-elements.js"></script>
 		<script src="assets/js/pages/form-dropzone.js"></script>
 		<!-- end: JavaScript-->
-		
+		<script>
+		    $.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+		</script>
 	</body>
 	
 </html>
