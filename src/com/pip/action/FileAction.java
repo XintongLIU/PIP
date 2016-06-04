@@ -147,6 +147,8 @@ public class FileAction {
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 2) != '/')
+			directory += "/";
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -164,6 +166,8 @@ public class FileAction {
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 2) != '/')
+			directory += "/";
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -181,6 +185,8 @@ public class FileAction {
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 2) != '/')
+			directory += "/";
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -198,6 +204,8 @@ public class FileAction {
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 2) != '/')
+			directory += "/";
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
