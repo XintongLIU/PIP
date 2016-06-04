@@ -107,6 +107,8 @@ public class FileFormServiceImpl implements IFileFormService {
 	public String deploy(int projectID, String directory) {
 		// TODO Auto-generated method stub
 		FileForm fileForm = fileDao.findFileByPIdandState(projectID, 1).get(0);
+		System.out.println("**************************************************************");
+		System.out.println(directory);
 		String[] strs = directory.split("/");
 		String tomcatroot = "";
 		String fileTocopyPath = directory + fileForm.getPath();

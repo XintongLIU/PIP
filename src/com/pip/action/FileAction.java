@@ -147,8 +147,10 @@ public class FileAction {
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
-		if(directory.charAt(directory.length() - 1) != '/')
+		if(directory.charAt(directory.length() - 1) != '/'){
 			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -166,8 +168,10 @@ public class FileAction {
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
-		if(directory.charAt(directory.length() - 1) != '/')
+		if(directory.charAt(directory.length() - 1) != '/'){
 			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -181,12 +185,14 @@ public class FileAction {
 	public String uploadProjectDoc() {
 		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
-		String path = "uploadfiles/projectrecords/" + projectID + "/"
+		String path = "uploadfiles/projectdocs/" + projectID + "/"
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
-		if(directory.charAt(directory.length() - 1) != '/')
+		if(directory.charAt(directory.length() - 1) != '/'){
 			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -200,12 +206,14 @@ public class FileAction {
 	public String uploadRecord() {
 		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
-		String path = "uploadfiles/projectdocs/" + projectID + "/"
+		String path = "uploadfiles/projectrecords/" + projectID + "/"
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
-		if(directory.charAt(directory.length() - 1) != '/')
+		if(directory.charAt(directory.length() - 1) != '/'){
 			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -247,6 +255,10 @@ public class FileAction {
 	public String deleteFile() {
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			directory.replace("\\", "/");
+		}
 		if (fileFormService.deleteFile(fileID, directory))
 			result = "success";
 		else
@@ -258,8 +270,19 @@ public class FileAction {
 	public String deploy(){
 		int projectID = getCurrentProjectId();
 		String directory = ServletActionContext.getServletContext().getRealPath("/");
-		if(directory.charAt(directory.length() - 1) != '/')
+		if(directory.charAt(directory.length() - 1) != '/'){
 			directory += "/";
+			String newdir = "";
+			for(int i = 0; i < directory.length(); i++){
+				char temp = directory.charAt(i);
+				if(temp == '\\')
+					newdir += "/";
+				else
+					newdir += temp;
+			}
+			System.out.println(newdir);
+			directory = newdir;
+		}
 		result = fileFormService.deploy(projectID, directory);
 		return result;
 	}
