@@ -258,6 +258,8 @@ public class FileAction {
 	public String deploy(){
 		int projectID = getCurrentProjectId();
 		String directory = ServletActionContext.getServletContext().getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/')
+			directory += "/";
 		result = fileFormService.deploy(projectID, directory);
 		return result;
 	}
