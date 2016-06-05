@@ -1,33 +1,37 @@
 package com.pip.action;
 
-import java.util.List;
 
-import com.pip.dao.ITeacherDAO;
 import com.pip.domain.Teacher;
 import com.pip.service.ITeacherService;
-import com.pip.service.impl.TeacherServiceImpl;
 
 public class UpdateTeacherAction {
-	
+
 	ITeacherService teacherService;
 	Teacher teacher;
 	String teacherNum;
 	int teacherID;
+	int newteacherID;
 	String teacherName;
-	List<Teacher> teacherList;
-	ITeacherDAO teacherDAO;
-	
-	public String execute(){
-		teacherID = Integer.parseInt(teacherNum);
-		teacher = teacherService.selectTeacher(teacherID);
-		teacher.setTeacherID(teacherID);
-		teacher.setTeacherName(teacherName);
-		teacherService.updateTeacher(teacher);
-		teacherList = teacherService.showTeacherList();
-		return "success";
+	String result;
+
+	public String execute() {
+		try {
+			if(teacherService.selectTeacher(newteacherID) != null){
+				result = "duplicate";
+				return result;
+			}
+			teacher = teacherService.selectTeacher(teacherID);
+			teacherService.deleteTeacher(teacherID);
+			teacher.setTeacherID(newteacherID);
+			teacher.setTeacherName(teacherName);
+			teacherService.insertTeacher(teacher);
+			result = "success";
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			result = "fail";
+		}
+		return result;
 	}
-
-
 
 	public Teacher getTeacher() {
 		return teacher;
@@ -53,54 +57,36 @@ public class UpdateTeacherAction {
 		this.teacherName = teacherName;
 	}
 
-
-
 	public ITeacherService getTeacherService() {
 		return teacherService;
 	}
-
-
 
 	public void setTeacherService(ITeacherService teacherService) {
 		this.teacherService = teacherService;
 	}
 
-
-
 	public String getTeacherNum() {
 		return teacherNum;
 	}
-
-
 
 	public void setTeacherNum(String teacherNum) {
 		this.teacherNum = teacherNum;
 	}
 
-
-
-	public List<Teacher> getTeacherList() {
-		return teacherList;
+	public String getResult() {
+		return result;
 	}
 
-
-
-	public void setTeacherList(List<Teacher> teacherList) {
-		this.teacherList = teacherList;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
-
-
-	public ITeacherDAO getTeacherDAO() {
-		return teacherDAO;
+	public int getNewteacherID() {
+		return newteacherID;
 	}
 
-
-
-	public void setTeacherDAO(ITeacherDAO teacherDAO) {
-		this.teacherDAO = teacherDAO;
+	public void setNewteacherID(int newteacherID) {
+		this.newteacherID = newteacherID;
 	}
-
-
 
 }

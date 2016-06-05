@@ -201,7 +201,7 @@ th {
 								<li class="active"><a href="ShowStudentList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>学生信息管理</span>
 								</a></li>
-								<li><a href="teacherinfo.jsp"> <i
+								<li><a href="ShowTeacherList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>教师信息管理</span>
 								</a></li>
 							</ul>

@@ -12,7 +12,7 @@ public class TeacherServiceImpl implements ITeacherService {
 	ITeacherDAO teacherDAO;
 
 	@Override
-	public int insertTearcher(Teacher teacher) {
+	public int insertTeacher(Teacher teacher) {
 		return (Integer)teacherDAO.insertTeacher(teacher);
 	}
 

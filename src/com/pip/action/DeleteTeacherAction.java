@@ -10,12 +10,18 @@ public class DeleteTeacherAction {
 	TeacherServiceImpl teacherService;
 	Teacher teacher;
 	Integer teacherID;
-	List<Teacher> teacherList;
+	String result;
 	
 	public String execute(){
-		teacherService.deleteTeacher(teacherID);
-		teacherList = teacherService.showTeacherList();
-		return "success";
+		try{
+			teacherService.deleteTeacher(teacherID);
+		    result = "success";
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			result = "fail";
+		}
+		return result;
 	}
 
 	public TeacherServiceImpl getTeacherService() {
@@ -42,13 +48,12 @@ public class DeleteTeacherAction {
 		this.teacherID = teacherID;
 	}
 
-	public List<Teacher> getTeacherList() {
-		return teacherList;
+	public String getResult() {
+		return result;
 	}
 
-	public void setTeacherList(List<Teacher> teacherList) {
-		this.teacherList = teacherList;
-	}
+	public void setResult(String result) {
+		this.result = result;
+	}	
 	
-
 }
