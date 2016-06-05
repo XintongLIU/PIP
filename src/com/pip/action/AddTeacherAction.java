@@ -14,7 +14,6 @@ public class AddTeacherAction {
 	Teacher teacher;
 	List<Teacher> teacherList;
 	public String execute(){
-
 		if(teacherID==null||teacherName==null)
 			return "fail";
 		teacherID = Integer.parseInt(teacherNum);
