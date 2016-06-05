@@ -24,6 +24,14 @@
 				<param name="root">result</param>>
 			</result>
 		</action>
+		<action name="DeleteTeachers" class="com.pip.action.DeleteTeacherAction" method="deleteTeachers">
+		    <result name="success" type="json">
+				<param name="root">result</param>>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>>
+			</result>
+		</action>
 		<action name="ShowTeacherList" class="com.pip.action.ShowTeacherListAction">
 			<result name="success">teacherinfo.jsp</result>
 		</action>
@@ -32,9 +40,6 @@
 				<param name="root">result</param>>
 			</result>
 			<result name="fail" type="json">
-				<param name="root">result</param>>
-			</result>
-			<result name="duplicate" type="json">
 				<param name="root">result</param>>
 			</result>
 		</action>

@@ -16,10 +16,6 @@ public class UpdateTeacherAction {
 
 	public String execute() {
 		try {
-			if(teacherService.selectTeacher(newteacherID) != null){
-				result = "duplicate";
-				return result;
-			}
 			teacher = teacherService.selectTeacher(teacherID);
 			teacherService.deleteTeacher(teacherID);
 			teacher.setTeacherID(newteacherID);

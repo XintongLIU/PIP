@@ -1,7 +1,5 @@
 package com.pip.action;
 
-import java.util.List;
-
 import com.pip.domain.Teacher;
 import com.pip.service.impl.TeacherServiceImpl;
 
@@ -11,6 +9,7 @@ public class DeleteTeacherAction {
 	Teacher teacher;
 	Integer teacherID;
 	String result;
+	String teacherIDs;
 	
 	public String execute(){
 		try{
@@ -23,7 +22,21 @@ public class DeleteTeacherAction {
 		}
 		return result;
 	}
-
+	
+	public String deleteTeachers(){
+		try{
+			String[] ids = teacherIDs.split("/");
+			for(String id : ids)
+				teacherService.deleteTeacher(Integer.parseInt(id));
+			result = "success";
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			result = "fail";
+		}
+		return result;
+	}
+	
 	public TeacherServiceImpl getTeacherService() {
 		return teacherService;
 	}
@@ -54,6 +67,14 @@ public class DeleteTeacherAction {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public String getTeacherIDs() {
+		return teacherIDs;
+	}
+
+	public void setTeacherIDs(String teacherIDs) {
+		this.teacherIDs = teacherIDs;
 	}	
-	
+
 }
