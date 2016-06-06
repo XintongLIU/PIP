@@ -517,7 +517,7 @@ th {
 				var tr = obj.parentNode.parentNode;
 				var tDs = tr.getElementsByTagName("td");
 				var studentID = tDs[1].innerHTML;
-				alert(studentID);
+				//alert(studentID);
 				$.ajax({
 					url:"DeleteStudent",
 					data:{
@@ -626,7 +626,7 @@ th {
 					/* alert(errorThrown); */
 				}
 			});
-			alert("haahhaahaah");
+			//alert("haahhaahaah");
 		}
 
 		//全选
