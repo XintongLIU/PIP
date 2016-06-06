@@ -1,7 +1,9 @@
 package com.pip.action;
 
 import java.util.List;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.pip.dao.impl.TeamDAOImpl;
 import com.pip.domain.Team;
 import com.pip.service.IConvertorService;
@@ -9,11 +11,12 @@ import com.pip.util.TrTeam;
 
 public class TeamAction {
 	List<TrTeam> trTeamList;
-	Integer teacherID = 1;
 	TeamDAOImpl teamDAO;
 	IConvertorService convertorService;
 	
 	public String showTrTeamList(){
+		Map session = ActionContext.getContext().getSession();
+		Integer teacherID = (Integer)session.get("userID");
 		List<Team> teamList = teamDAO.findTeamByTeacherId(teacherID);
 		trTeamList = convertorService.teamListToTrTeamList(teamList);
 		return "success";
@@ -27,13 +30,6 @@ public class TeamAction {
 		this.trTeamList = trTeamList;
 	}
 
-	public Integer getTeacherID() {
-		return teacherID;
-	}
-
-	public void setTeacherID(Integer teacherID) {
-		this.teacherID = teacherID;
-	}
 
 	public TeamDAOImpl getTeamDAO() {
 		return teamDAO;

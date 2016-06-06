@@ -2,7 +2,9 @@ package com.pip.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.pip.domain.ProjectScore;
 import com.pip.service.IProjectDetailService;
 
@@ -57,7 +59,8 @@ public class ShowProjectDetailAction {
 		projectDetail = new ArrayList<Integer>();
 		
 		List<ProjectScore> projectDetailList  = new ArrayList<ProjectScore>(); 
-		int studentId = 1;
+		Map map = ActionContext.getContext().getSession();
+		int studentId = (Integer)map.get("userID");
 //		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
 		projectDetailList = projectDetailStateService.showProjectDetailListByProjectID(1);
 		
@@ -73,7 +76,8 @@ public class ShowProjectDetailAction {
 		projectDetail = new ArrayList<Integer>();
 		score = new ArrayList<Integer>();
 		List<ProjectScore> projectDetailList  = new ArrayList<ProjectScore>(); 	
-		int studentId = 1;
+		Map map = ActionContext.getContext().getSession();
+		int studentId = (Integer)map.get("userID");
 //		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
 		projectDetailList = projectDetailStateService.showProjectDetailListByProjectID(1);	
 		
