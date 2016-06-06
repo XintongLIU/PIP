@@ -25,11 +25,5 @@
 			<param name="root">projectScoreList</param>>
 		</result>
 	</action>
-	
-	<action name="UpdateProjectDetailScore" class="com.pip.action.UpdateProjectDetailScoreAction" method="updateScore">
-		<result name="success" type="json">
-			<param name="root">result</param>
-		</result>
-	</action>
 </package>
 </struts>
