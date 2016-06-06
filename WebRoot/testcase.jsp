@@ -198,7 +198,7 @@
 									  		<div class="col-md-4">
 								            <div class="panel bk-bg-white">
 									          <div class="panel-heading bk-bg-primary">
-										        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>${testCaseID }</h6>
+										        <h6 style="float: left;"><i class="fa fa-file-text-o"></i>用例${testCaseID }</h6>
 										        <div style="text-align: right;">
 												  <label class="switch switch-primary bk-margin-top-10">
 												    <input type="checkbox" class="switch-input" checked="">

@@ -85,7 +85,7 @@
 	        			else if(usertype == "2")
 	        				window.location.href = "index-teacher.jsp";
 	        			else if(usertype == "3")
-	        				window.location.href = "index-administrator.jsp";
+	        				window.location.href = "ShowStudentList.action";
 	        		}
 	        		else if(data == "LOGIN_FAIL"){
 	        			swal("抱歉", "登录失败", "error");
