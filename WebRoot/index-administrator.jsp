@@ -158,7 +158,7 @@ th {
 				<div class="userbox">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<div class="profile-info">
-							<span class="name">张三</span>
+							<span class="name"></span>
 						</div> <i class="fa custom-caret"></i>
 					</a>
 					<div class="dropdown-menu">
@@ -190,18 +190,18 @@ th {
 							<ul class="nav nav-sidebar">
 								<div class="panel-body text-center">
 									<div class="bk-avatar">
-										<img src="assets/img/avatar.jpg" class="img-circle bk-img-60"
+										<img src="assets/img/administrator.png" class="img-circle bk-img-60"
 											alt="" />
 									</div>
 									<div class="bk-padding-top-10">
-										<i class="fa fa-circle text-success"></i> <small>张三</small>
+										<i class="fa fa-circle text-success"></i> <small class="name"></small>
 									</div>
 								</div>
 								<div class="divider2"></div>
 								<li class="active"><a href="ShowStudentList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>学生信息管理</span>
 								</a></li>
-								<li><a href="teacherinfo.jsp"> <i
+								<li><a href="ShowTeacherList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>教师信息管理</span>
 								</a></li>
 							</ul>
@@ -424,6 +424,15 @@ th {
 	<script src="assets/js/core.min.js"></script>
 
 	<!-- Pages JS -->
+	<script>
+			$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+			})
+	</script>
 	<script type="text/javascript">
 // 		var $ = function(id) {
 // 			return document.getElementById(id);
@@ -508,7 +517,7 @@ th {
 				var tr = obj.parentNode.parentNode;
 				var tDs = tr.getElementsByTagName("td");
 				var studentID = tDs[1].innerHTML;
-				alert(studentID);
+				//alert(studentID);
 				$.ajax({
 					url:"DeleteStudent",
 					data:{
@@ -617,7 +626,7 @@ th {
 					/* alert(errorThrown); */
 				}
 			});
-			alert("haahhaahaah");
+			//alert("haahhaahaah");
 		}
 
 		//全选

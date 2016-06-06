@@ -54,8 +54,7 @@
                   </ul>
                  <button onclick="Login();return false;">登陆</button>
               </form>
-               
-              
+        </div> 
         <script src="assets/js/jquery-1.8.2.min.js"></script>
         <script src="assets/js/supersized.3.2.7.min.js"></script>
         <script src="assets/js/supersized-init.js"></script>
@@ -86,7 +85,7 @@
 	        			else if(usertype == "2")
 	        				window.location.href = "index-teacher.jsp";
 	        			else if(usertype == "3")
-	        				window.location.href = "index-administrator.jsp";
+	        				window.location.href = "ShowStudentList.action";
 	        		}
 	        		else if(data == "LOGIN_FAIL"){
 	        			swal("抱歉", "登录失败", "error");

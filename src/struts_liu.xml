@@ -4,7 +4,44 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 <constant name="struts.devMode" value="true" />
-<package name="liu" namespace="/" extends="struts-default">
-
+<package name="liu" namespace="/" extends="struts-default,json-default">
+		<action name="AddTeacher" class="com.pip.action.AddTeacherAction">
+			<result name="success" type="json">
+				<param name="root">result</param>>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>>
+			</result>
+			<result name="duplicate" type="json">
+				<param name="root">result</param>>
+			</result>
+		</action>
+		<action name="DeleteTeacher" class="com.pip.action.DeleteTeacherAction">
+			<result name="success" type="json">
+				<param name="root">result</param>>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>>
+			</result>
+		</action>
+		<action name="DeleteTeachers" class="com.pip.action.DeleteTeacherAction" method="deleteTeachers">
+		    <result name="success" type="json">
+				<param name="root">result</param>>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>>
+			</result>
+		</action>
+		<action name="ShowTeacherList" class="com.pip.action.ShowTeacherListAction">
+			<result name="success">teacherinfo.jsp</result>
+		</action>
+		<action name="UpdateTeacher" class="com.pip.action.UpdateTeacherAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>>
+			</result>
+			<result name="fail" type="json">
+				<param name="root">result</param>>
+			</result>
+		</action>
     </package>
 </struts>

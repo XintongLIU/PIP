@@ -110,7 +110,7 @@ td {
 				<div class="userbox">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<div class="profile-info">
-							<span class="name">张三</span>
+							<span class="name"></span>
 						</div> <i class="fa custom-caret"></i>
 					</a>
 					<div class="dropdown-menu">
@@ -144,24 +144,24 @@ td {
 							<ul class="nav nav-sidebar">
 								<div class="panel-body text-center">
 									<div class="bk-avatar">
-										<img src="assets/img/avatar.jpg" class="img-circle bk-img-60"
+										<img src="assets/img/student.png" class="img-circle bk-img-60"
 											alt="" />
 									</div>
 									<div class="bk-padding-top-10">
-										<i class="fa fa-circle text-success"></i> <small>张三</small>
+										<i class="fa fa-circle text-success"></i> <small class="name"></small>
 									</div>
 								</div>
 								<div class="divider2"></div>
-								<li><a href="index-student.jsp"> <i
+								<li><a href="projectDetailStateShow.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>检测流程</span>
 								</a></li>
 								<li class="active"><a href="uploadfile.jsp"> <i
 										class="fa fa-arrow-up" aria-hidden="true"></i><span>上传项目文档</span>
 								</a></li>
-								<li><a href="testcase.jsp"> <i class="fa fa-copy"
+								<li><a href="showTestCaseList.action"> <i class="fa fa-copy"
 										aria-hidden="true"></i><span>选择测试用例</span>
 								</a></li>
-								<li><a href="queryscore.jsp"> <i class="fa  fa-search"
+								<li><a href="projectDetailStatueAndScoreShow.action"> <i class="fa  fa-search"
 										aria-hidden="true"></i><span>查询项目评分</span>
 								</a></li>
 							</ul>
@@ -240,13 +240,17 @@ td {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label">将文件拖拽到此区域或直接点击此区域选择文件上传</label>
-									<div class="controls">
+							        <label class="control-label" id="projectfileprompt"></label>
+									<div style="text-align:right;display:none;" id="deploy">
+									    <a class="btn btn-primary" onclick="deploy()">部署</a>
+									    <a class="btn btn-primary" id="checkdeploy" onclick="checkdeploy()" ref="http://localhost:8080/struts2">查看部署的项目</a>
+									</div>
+									<div class="controls" id="uploadprojectfileform">
 										<div id="dropzone">
 											<form action="uploadProjectfile" class="dropzone"
 												id="projectfile" enctype="multipart/form-data">
 												<div class="fallback">
-													<input name="file" type="file" multiple="multiple"/>
+													<input name="file" type="file"/>
 												</div>
 											</form>
 										</div>
@@ -296,7 +300,7 @@ td {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label">将文件拖拽到此区域或直接点击此区域选择文件上传</label>
+									<label class="control-label">请将源代码文件拖拽到此区域或直接点击此区域选择文件上传，只支持'.rar,.zip,.7z,.tar'格式的文件</label>
 									<div class="controls">
 										<div id="dropzone">
 											<form action="uploadCode" class="dropzone" id="code" enctype="multipart/form-data">
@@ -350,7 +354,7 @@ td {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label">将文件拖拽到此区域或直接点击此区域选择文件上传</label>
+									<label class="control-label">请将项目文档拖拽到此区域或直接点击此区域选择文件上传，只支持'.rar,.zip,.7z,.tar'格式的文件</label>
 									<div class="controls">
 										<div id="dropzone">
 											<form action="uploadProjectDoc" class="dropzone" id="doc" enctype="multipart/form-data">
@@ -405,7 +409,7 @@ td {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label">将文件拖拽到此区域或直接点击此区域选择文件上传</label>
+									<label class="control-label">请将工时记录拖拽到此区域或直接点击此区域选择文件上传，只支持'.rar,.zip,.7z,.tar'格式的文件</label>
 									<div class="controls">
 										<div id="dropzone">
 											<form action="uploadRecord" class="dropzone" id="record" enctype="multipart/form-data">
@@ -498,14 +502,21 @@ td {
 			       if(data == ""){
 			           $('#emptyprojectfile').attr("style","");
 			           $('#loadedprojectfiles').attr("style","display:none;");
+			           $('#uploadprojectfileform').attr("style","");
+			           $('#projectfileprompt').html("将工程文件拖拽到此区域或直接点击此区域选择文件上传，只支持'.war'格式的文件");
+			           $('#deploy').attr("style","display:none;");
 			       }
 			       else{
+			       $('#projectfileprompt').html("只能提交一个工程文件，若要重新添加，请先将上传的工程文件删除");
+			       $('#uploadprojectfileform').attr("style","display:none");
 			       $('#emptyprojectfile').attr("style","display:none;");
 			       $('#loadedprojectfiles').attr("style","");
+			       $('#deploy').attr("style","text-align:right;");
 			       $('#uploadedprojectfiles').children('tr').remove();
 			       $.each(data,function(i,list){
 			           var tr = $("<tr>"
-								       +"<td>"+ list.fileName +"</td>"
+								       +"<td id='projectfilename'>" + list.fileName
+								       +"</td>"
 									   +"<td class='bk-padding-off-right'>"
 									   +"<ul class='list-inline bk-margin-off-bottom text-right'>"
 									   +"<li class='bk-padding-off-right'>"
@@ -646,6 +657,13 @@ td {
 	    }
 	    //加载页面时执行的函数
 		$(document).ready(function() {
+		$.ajax({
+				url: "GetUserName",
+				dataType: "json",
+				success: function(data){
+					$(".name").html(data);
+				}
+	    });
         showProjectFile();
         showCode();
         showProjectDoc();
@@ -659,7 +677,8 @@ td {
                 autoProcessQueue: false,
                 addRemoveLinks: true,
                 dictResponseError: 'Error while uploading file!',
-                parallelUploads: 100,
+                //acceptedFiles: ".war",
+                maxFiles: 1,
                 init: function() {
                         var submitButton = document.querySelector("#submit-projectfile");
                         myDropzone = this; // closure
@@ -667,20 +686,18 @@ td {
                         function() {
                                 myDropzone.processQueue(); // Tell Dropzone to process all queued files.
                         });
+                        //超出文件个数限制的事件
+                        this.on("maxfilesexceeded",function(file) {
+                                this.removeAllFiles();
+                                this.addFile(file);
+                        });
                         //添加一个文件的事件
                         this.on("addedfile",
                         function(file) {
                                 $('#submit-projectfile').attr("style", "");
-                                if (this.files.length) {
-                                    var _i, _len;
-                                    for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
-                                    {
-                                        if(this.files[_i].name === file.name)
-                                        {
-                                            swal("错误", "文件：" + filename + "已经在上传队列中！不能重复添加。", "error");
-                                            this.removeFile(file);
-                                        }
-                                    }
+                                if (this.files[1]!=null){
+                                    swal("错误","您只能提交一个工程文件！","error");
+                                    this.removeFile(this.files[0]);
                                 }
                         });
                         //删除文件的事件，当上传的文件为空时，使上传按钮不可用状态
@@ -726,6 +743,7 @@ td {
                 addRemoveLinks: true,
                 dictResponseError: 'Error while uploading file!',
                 parallelUploads: 100,
+                acceptedFiles: ".rar,.zip,.7z,.tar",
                 init: function() {
                         var submitButton = document.querySelector("#submit-code");
                         myDropzone1 = this; // closure
@@ -792,6 +810,7 @@ td {
                 addRemoveLinks: true,
                 dictResponseError: 'Error while uploading file!',
                 parallelUploads: 100,
+                acceptedFiles: ".rar,.zip,.7z,.tar",
                 init: function() {
                         var submitButton = document.querySelector("#submit-doc");
                         myDropzone2 = this; // closure
@@ -858,6 +877,7 @@ td {
                 addRemoveLinks: true,
                 dictResponseError: 'Error while uploading file!',
                 parallelUploads: 100,
+                acceptedFiles: ".rar,.zip,.7z,.tar",
                 init: function() {
                         var submitButton = document.querySelector("#submit-record");
                         myDropzone3 = this; // closure
@@ -916,7 +936,43 @@ td {
                 }        
             };
         });
-        
+        //部署项目
+        function deploy(){
+            var projectfilename = $('#projectfilename').html();
+            var currentpath = location.href;
+            var paths = currentpath.split("/");
+            var root = "";
+            for(var i = 0; i < paths.length - 2; i++){
+                root += paths[i];
+                root += "/";
+            }
+            var strs = projectfilename.split(".");
+            var ref = strs[0];
+            ref = root + ref;
+            $.ajax({
+				url: "deploy",
+				dataType: "json",
+				success: function(data){
+				    if(data == "success"){
+				        swal("恭喜！","您的项目已经部署！","success");
+				        $('#checkdeploy').attr("ref",ref);
+				    }
+				    if(data == "fail"){
+				        swal("抱歉！","项目部署失败，请稍后再尝试。","error");
+				    }
+				    if(data == "duplicate"){
+				        swal("抱歉！","您已部署过名为" + projectfilename + "的项目。","error");
+				    }
+				}
+	        });
+        }
+        function checkdeploy(){
+            var ref =  $('#checkdeploy').attr("ref");
+            if(ref == "")
+                swal("错误！","您还没有部署项目，请先部署！","error");
+            else
+                location.href = ref;
+        }
 	</script>
 
 	<!-- end: JavaScript-->

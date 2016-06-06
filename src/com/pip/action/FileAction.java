@@ -2,9 +2,11 @@ package com.pip.action;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.pip.domain.FileForm;
 import com.pip.service.IFileFormService;
 
@@ -15,12 +17,13 @@ public class FileAction {
 	String result;
 	Integer userID;
 	Integer fileID;
+	Integer teamID;
 	IFileFormService fileFormService;
 	List<FileForm> projectFileList;
 	List<FileForm> codeList;
 	List<FileForm> projectDocList;
 	List<FileForm> recordList;
-
+	String projectfilename;
 	// Getters and Setters
 	public File getFile() {
 		return file;
@@ -69,6 +72,14 @@ public class FileAction {
 	public void setFileID(Integer fileID) {
 		this.fileID = fileID;
 	}
+	
+	public Integer getTeamID() {
+		return teamID;
+	}
+
+	public void setTeamID(Integer teamID) {
+		this.teamID = teamID;
+	}
 
 	public IFileFormService getFileFormService() {
 		return fileFormService;
@@ -109,15 +120,37 @@ public class FileAction {
 	public void setRecordList(List<FileForm> recordList) {
 		this.recordList = recordList;
 	}
+	
+	public String getProjectfilename() {
+		return projectfilename;
+	}
 
+	public void setProjectfilename(String projectfilename) {
+		this.projectfilename = projectfilename;
+	}
+
+	Integer getCurrentProjectId(){
+		Map session = ActionContext.getContext().getSession();
+		Integer userID = (Integer) session.get("userID");
+		Integer userType = (Integer) session.get("userType");
+		if(userType == 1)
+		  return fileFormService.getCurrentProjectID(userID);
+		else
+		  return fileFormService.getCurrentProjectIDbyTeamID(teamID);
+	}
+	
 	// 上传项目工程文件
 	public String uploadProjectFile() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
 		String path = "uploadfiles/projectfiles/" + projectID + "/"
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -129,12 +162,16 @@ public class FileAction {
 
 	// 上传项目源代码文件
 	public String uploadCode() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
 		String path = "uploadfiles/sourcecode/" + projectID + "/"
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -146,12 +183,16 @@ public class FileAction {
 
 	// 上传项目文档
 	public String uploadProjectDoc() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
-		String path = "uploadfiles/projectrecords/" + projectID + "/"
+		String path = "uploadfiles/projectdocs/" + projectID + "/"
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -163,12 +204,16 @@ public class FileAction {
 
 	// 上传项目工时文档
 	public String uploadRecord() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		FileForm fileform = new FileForm();
-		String path = "uploadfiles/projectdocs/" + projectID + "/"
+		String path = "uploadfiles/projectrecords/" + projectID + "/"
 				+ fileFileName;
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			directory.replace("\\", "/");
+		}
 		String absolutepath = directory + path;
 		fileform.setFileName(fileFileName);
 		fileform.setPath(path);
@@ -180,28 +225,28 @@ public class FileAction {
 
 	// 获取项目工程文件
 	public String showProjectFile() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		projectFileList = fileFormService.showProjectFile(projectID);
 		return "success";
 	}
 
 	// 获取项目源代码文件
 	public String showCode() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		codeList = fileFormService.showCode(projectID);
 		return "success";
 	}
 
 	// 获取项目工程文档
 	public String showProjectDoc() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		projectDocList = fileFormService.showProjectDoc(projectID);
 		return "success";
 	}
 
 	// 获取项目工时记录
 	public String showRecord() {
-		int projectID = 1;
+		int projectID = getCurrentProjectId();
 		recordList = fileFormService.showRecord(projectID);
 		return "success";
 	}
@@ -210,10 +255,35 @@ public class FileAction {
 	public String deleteFile() {
 		String directory = ServletActionContext.getServletContext()
 				.getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			directory.replace("\\", "/");
+		}
 		if (fileFormService.deleteFile(fileID, directory))
 			result = "success";
 		else
 			result = "fail";
+		return result;
+	}
+	
+	//部署工程
+	public String deploy(){
+		int projectID = getCurrentProjectId();
+		String directory = ServletActionContext.getServletContext().getRealPath("/");
+		if(directory.charAt(directory.length() - 1) != '/'){
+			directory += "/";
+			String newdir = "";
+			for(int i = 0; i < directory.length(); i++){
+				char temp = directory.charAt(i);
+				if(temp == '\\')
+					newdir += "/";
+				else
+					newdir += temp;
+			}
+			System.out.println(newdir);
+			directory = newdir;
+		}
+		result = fileFormService.deploy(projectID, directory);
 		return result;
 	}
 }

@@ -124,7 +124,7 @@
 								<ul class="nav nav-sidebar">
 									<div class="panel-body text-center">								
 										<div class="bk-avatar">
-											<img src="assets/img/avatar.jpg" class="img-circle bk-img-60" alt="" />
+											<img src="assets/img/teacher.png" class="img-circle bk-img-60" alt="" />
 										</div>
 										<div class="bk-padding-top-10">
 											<i class="fa fa-circle text-success"></i> <small class="name"></small>
@@ -310,7 +310,6 @@
 		<script src="assets/plugins/morris/js/morris.min.js"></script>
 		<script src="assets/plugins/gauge/js/gauge.min.js"></script>		
 		<script src="assets/plugins/d3/js/d3.min.js"></script>		
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		
 		<!-- Theme JS -->		
 		<script src="assets/js/jquery.mmenu.min.js"></script>

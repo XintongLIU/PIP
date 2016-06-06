@@ -6,13 +6,35 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import com.pip.domain.FileForm;
+import com.pip.domain.ProjectScore;
+import com.pip.domain.Student;
+import com.pip.domain.Team;
 import com.pip.dao.IFileFormDAO;
+import com.pip.dao.IProjectScoreDAO;
+import com.pip.dao.IStudentDAO;
+import com.pip.dao.ITeamDAO;
 import com.pip.service.IFileFormService;
 
 public class FileFormServiceImpl implements IFileFormService {
 
 	IFileFormDAO fileDao;
+	IStudentDAO studentDAO;
+	ITeamDAO teamDAO;
+	IProjectScoreDAO projectScoreDAO;
+	@Override
+	public Integer getCurrentProjectID(Integer studentID) {
+		Student currentstudent = studentDAO.findStudentById(studentID);
+		return currentstudent.getProjectID();
+	}
+	
 
+	@Override
+	public Integer getCurrentProjectIDbyTeamID(Integer teamID) {
+		// TODO Auto-generated method stub
+		Team currentteam = teamDAO.findTeamById(teamID);
+		return currentteam.getProjectID();
+	}
+	
 	@Override
 	public String uploadFile(FileForm fileform, File file, String absolutepath) {
 		if (fileDao.findFileByPath(fileform.getPath()).size() != 0)
@@ -80,7 +102,54 @@ public class FileFormServiceImpl implements IFileFormService {
 		// TODO Auto-generated method stub
 		return fileDao.findFileByPIdandState(projectID, 4);
 	}
-
+	
+	@Override
+	public String deploy(int projectID, String directory) {
+		// TODO Auto-generated method stub
+		FileForm fileForm = fileDao.findFileByPIdandState(projectID, 1).get(0);
+		System.out.println("**************************************************************");
+		System.out.println(directory);
+		String[] strs = directory.split("/");
+		String tomcatroot = "";
+		String fileTocopyPath = directory + fileForm.getPath();
+		for(int i = 0; i < strs.length - 1; i++){
+			tomcatroot += strs[i];
+			tomcatroot += "/";
+		}
+		String fileTodeployPath = tomcatroot + fileForm.getFileName();
+		try {
+			File fileTocopy = new File(fileTocopyPath);
+			File fileTodeploy = new File(fileTodeployPath);
+			if (!fileTodeploy.getParentFile().exists())
+				fileTodeploy.getParentFile().mkdirs();
+			if (!fileTodeploy.exists())
+				fileTodeploy.createNewFile();
+			else
+				return "duplicate";
+			FileOutputStream fos = new FileOutputStream(fileTodeploy);
+			FileInputStream fis = new FileInputStream(fileTocopy);
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while ((len = fis.read(buffer)) != -1) {
+				fos.write(buffer, 0, len);
+			}
+			fos.close();
+			fis.close();
+			List<ProjectScore> scores = projectScoreDAO.findProjectScoreById(projectID);
+			for(ProjectScore score : scores){
+				if(score.getDetailType() == 1){
+					score.setProjectState(1);
+					projectScoreDAO.update(score);
+					break;
+				}	
+			}
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 	// Getters and Setters
 	public IFileFormDAO getFileDao() {
 		return fileDao;
@@ -90,4 +159,30 @@ public class FileFormServiceImpl implements IFileFormService {
 		this.fileDao = fileDao;
 	}
 
+	public IStudentDAO getStudentDAO() {
+		return studentDAO;
+	}
+
+	public void setStudentDAO(IStudentDAO studentDAO) {
+		this.studentDAO = studentDAO;
+	}
+
+	public ITeamDAO getTeamDAO() {
+		return teamDAO;
+	}
+
+	public void setTeamDAO(ITeamDAO teamDAO) {
+		this.teamDAO = teamDAO;
+	}
+
+
+	public IProjectScoreDAO getProjectScoreDAO() {
+		return projectScoreDAO;
+	}
+
+
+	public void setProjectScoreDAO(IProjectScoreDAO projectScoreDAO) {
+		this.projectScoreDAO = projectScoreDAO;
+	}
+	
 }

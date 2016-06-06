@@ -9,14 +9,25 @@ public class AddTeacherAction {
 	Integer teacherID;
 	String teacherName;
 	Teacher teacher;
-	
-	public String execute(){
-		teacher = new Teacher();
-		teacher.setTeacherName(teacherName);
-		teacher.setPassword("123456");
-		teacher.setTeacherID(teacherID);
-		teacherService.insertTearcher(teacher);
-		return "success";
+	String result;
+
+	public String execute() {
+		if (teacherService.selectTeacher(teacherID) != null) {
+			result = "duplicate";
+			return result;
+		}
+		try {
+			teacher = new Teacher();
+			teacher.setTeacherName(teacherName);
+			teacher.setPassword("123456");
+			teacher.setTeacherID(teacherID);
+			teacherService.insertTeacher(teacher);
+			result = "success";
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			result = "fail";
+		}
+		return result;
 	}
 
 	public TeacherServiceImpl getTeacherService() {
@@ -50,4 +61,13 @@ public class AddTeacherAction {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 }

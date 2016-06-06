@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,12 +146,10 @@ th {
 		<div class="container-fluid container-nav">
 			<!-- Navbar Action -->
 			<ul class="nav navbar-nav navbar-actions navbar-left">
-				<li class="visible-md visible-lg"><a
-					href="teacherinfo.jsp#" id="main-menu-toggle"><i
-						class="fa fa-th-large"></i></a></li>
-				<li class="visible-xs visible-sm"><a
-					href="teacherinfo.jsp#" id="sidebar-menu"><i
-						class="fa fa-navicon"></i></a></li>
+				<li class="visible-md visible-lg"><a href="teacherinfo.jsp#"
+					id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+				<li class="visible-xs visible-sm"><a href="teacherinfo.jsp#"
+					id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>
 			</ul>
 			<!-- Navbar Right -->
 			<div class="navbar-right">
@@ -190,18 +189,18 @@ th {
 							<ul class="nav nav-sidebar">
 								<div class="panel-body text-center">
 									<div class="bk-avatar">
-										<img src="assets/img/avatar.jpg" class="img-circle bk-img-60"
-											alt="" />
+										<img src="assets/img/administrator.png"
+											class="img-circle bk-img-60" alt="" />
 									</div>
 									<div class="bk-padding-top-10">
 										<i class="fa fa-circle text-success"></i> <small class="name"></small>
 									</div>
 								</div>
 								<div class="divider2"></div>
-								<li><a href="index-administrator.jsp"> <i
+								<li><a href="ShowStudentList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>学生信息管理</span>
 								</a></li>
-								<li class="active"><a href="teacherinfo.jsp"> <i
+								<li class="active"><a href="ShowTeacherList.action"> <i
 										class="fa fa-laptop" aria-hidden="true"></i><span>教师信息管理</span>
 								</a></li>
 							</ul>
@@ -251,26 +250,20 @@ th {
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">姓名</label>
 									<div class="col-sm-6">
-										<input type="text" id="nameInput" name="input-normal"
+										<input type="text" id="nameInput" name="teacherName"
 											class="form-control" placeholder="姓名">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="input-normal">教工号</label>
 									<div class="col-sm-6">
-										<input type="text" id="idInput" name="input-normal"
-											class="form-control" placeholder="学号">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label" for="input-normal">课程编号</label>
-									<div class="col-sm-6">
-										<input type="text" id="classInput" name="input-normal"
-											class="form-control" placeholder="班级">
+										<input type="text" id="idInput" name="teacherNum"
+											class="form-control" placeholder="教工号">
 									</div>
 								</div>
 								<div class="col-sm-offset-4">
-									<a class="bk-margin-5 btn btn-primary col-sm-6" onclick="addTr()">添加</a>
+									<input class="bk-margin-5 btn btn-primary col-sm-6"
+										onclick="addTr()" value="提交">
 								</div>
 							</form>
 						</div>
@@ -285,39 +278,98 @@ th {
 								<i class="fa fa-table red"></i><span class="break"></span>教师信息
 							</h6>
 						</div>
-						<div class="panel-body">
-							<div class="button-group pull-right"
-								style="padding-bottom: 30px;">
-								<button id="selectall" class="btn btn-primary" onclick="selAll()">全选</button>
-								<button id="reverseselect" class="btn btn-primary" onclick="unSel()">反选</button>
-								<button id="deleteselected" class="btn btn-primary" onclick="delSel()">删除所选</button>
+						<s:if test="teacherList.size() == 0">
+							<div id="emptyteacher">
+								<div class="col-sm-12">
+									<h2 class="uline-title text-center">还没有教师信息</h2>
+								</div>
+								<div style="width:260px;margin:0 auto;margin-bottom:20px;">
+									<img src="assets/img/emptyrecord.png" alt="" />
+								</div>
 							</div>
-							<div class="table-responsive">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th></th>
-											<th>教工号</th>
-											<th>姓名</th>
-											<th>课程号</th>
-											<th>操作</th>
-										</tr>
-									</thead>
-									<tbody id="teacherinfo">
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>2013212XXX</td>
-											<td>教师X</td>
-											<td>201321250X</td>
-											<td>
-											  <input type="button" value="删除" onclick="delTr(this);">
-											  <input type="button" value="修改" onclick="modTr(this);">
-											</td>
-										</tr>
-									</tbody>
-								</table>
+							<div class="panel-body" id="teachers" style="display:none">
+								<div class="button-group pull-right"
+									style="padding-bottom: 30px;">
+									<button id="selectall" class="btn btn-primary"
+										onclick="selAll()">全选</button>
+									<button id="reverseselect" class="btn btn-primary"
+										onclick="unSel()">反选</button>
+									<button id="deleteselected" class="btn btn-primary"
+										onclick="delSel()">删除所选</button>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th></th>
+												<th>教工号</th>
+												<th>姓名</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="teacherinfo">
+											<s:iterator value="teacherList">
+												<tr>
+													<td><input type="checkbox"></td>
+													<td>${teacherID}</td>
+													<td>${teacherName}</td>
+													<td><input type="button" value="删除"
+														onclick="delTr(this);" teacherID=${teacherID}> <input
+														type="button" value="修改" onclick="modTr(this);"
+														teacherID=${teacherID}></td>
+												</tr>
+											</s:iterator>
+										</tbody>
+									</table>
+								</div>
 							</div>
-						</div>
+						</s:if>
+						<s:else>
+						    <div id="emptyteacher" style="display:none">
+								<div class="col-sm-12">
+									<h2 class="uline-title text-center">还没有教师信息</h2>
+								</div>
+								<div style="width:260px;margin:0 auto;margin-bottom:20px;">
+									<img src="assets/img/emptyrecord.png" alt="" />
+								</div>
+							</div>
+							<div id="teachers" class="panel-body" style="">
+								<div class="button-group pull-right"
+									style="padding-bottom: 30px;">
+									<button id="selectall" class="btn btn-primary"
+										onclick="selAll()">全选</button>
+									<button id="reverseselect" class="btn btn-primary"
+										onclick="unSel()">反选</button>
+									<button id="deleteselected" class="btn btn-primary"
+										onclick="delSel()">删除所选</button>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th></th>
+												<th>教工号</th>
+												<th>姓名</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="teacherinfo">
+											<s:iterator value="teacherList">
+												<tr>
+													<td><input type="checkbox"></td>
+													<td>${teacherID}</td>
+													<td>${teacherName}</td>
+													<td><input type="button" value="删除"
+														onclick="delTr(this);" teacherID=${teacherID}> <input
+														type="button" value="修改" onclick="modTr(this);"
+														teacherID=${teacherID}></td>
+												</tr>
+											</s:iterator>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</s:else>
 					</div>
 				</div>
 				<!-- End StudentInfo-->
@@ -325,19 +377,14 @@ th {
 					<div id="over_child">
 						<p>修改教师信息</p>
 						<table>
-							<tbody id="over_tb">
+							<tbody id="over_tb"teacherID＝"">
 								<tr>
 									<td>教工号：</td>
-									<td><input type="text" disabled="disabled"></td>
+									<td><input type="text"></td>
 								</tr>
 
 								<tr>
 									<td>姓名：</td>
-									<td><input type="text" disabled="disabled"></td>
-								</tr>
-
-								<tr>
-									<td>课程号：</td>
 									<td><input type="text"></td>
 								</tr>
 							</tbody>
@@ -383,8 +430,6 @@ th {
 	<script src="assets/plugins/xcharts/js/xcharts.min.js"></script>
 	<script src="assets/plugins/autosize/jquery.autosize.min.js"></script>
 	<script src="assets/plugins/placeholder/js/jquery.placeholder.min.js"></script>
-	<script src="assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
-	<script src="assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/raphael/js/raphael.min.js"></script>
 	<script src="assets/plugins/morris/js/morris.min.js"></script>
 	<script src="assets/plugins/gauge/js/gauge.min.js"></script>
@@ -394,10 +439,17 @@ th {
 	<script src="assets/js/core.min.js"></script>
 
 	<!-- Pages JS -->
+	<script>
+		$.ajax({
+			url : "GetUserName",
+			dataType : "json",
+			success : function(data) {
+				$(".name").html(data);
+			}
+		})
+	</script>
 	<script type="text/javascript">
-		var $ = function(id) {
-			return document.getElementById(id);
-		}
+		var currentobj;//当前操作的对象
 		var createObj = function(tagName) {
 			return document.createElement(tagName);
 		}
@@ -405,74 +457,115 @@ th {
 			//1做添加，首先获取输入的值
 			var idTxt = document.getElementById("idInput").value;
 			var nameTxt = document.getElementById("nameInput").value;
-			var classTxt = document.getElementById("classInput").value;
-			if (idTxt == "" || nameTxt == "" || classTxt == "") {
+			if (idTxt == "" || nameTxt == "") {
 				swal("注意!", "请将所有信息输入完整！", "error");
 				return;
 			}
-			//2创建tr
-			var tr = createObj("tr");
-			//3创建td
-			var checkTd = createObj("td");
-			var idTd = createObj("td");
-			var nameTd = createObj("td");
-			var classTd = createObj("td");
-			var dmlTd = createObj("td");
-			//4将获得的信息添加到指定的为td中
-			var checkBtn = createObj("input");
-			checkBtn.type = "checkbox";//创建一个复选框按钮
-			checkTd.appendChild(checkBtn);//将复选框添加到第一列；
-			//将获得的值添加到创建的指定Td中；
-			var tbody = document.getElementById("teacherinfo");
-			var rows = tbody.rows.length;
-			idTd.innerHTML = idTxt;
-			nameTd.innerHTML = nameTxt;
-			classTd.innerHTML = classTxt;
-			//创建个button按钮，添加到操作列；
-			var delBtn = createObj("input");
-			delBtn.type = "button";
-			delBtn.value = "删除"
-			/*
-			 *为新建的delBtn创建监听属性；
-			 */
+			$.ajax({
+				url : "AddTeacher",
+				data : {
+					"teacherID" : idTxt,
+					"teacherName" : nameTxt
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data == "success") {
+						//2创建tr
+						var tr = createObj("tr");
+						//3创建td
+						var checkTd = createObj("td");
+						var idTd = createObj("td");
+						var nameTd = createObj("td");
+						var dmlTd = createObj("td");
+						//4将获得的信息添加到指定的为td中
+						var checkBtn = createObj("input");
+						checkBtn.type = "checkbox";//创建一个复选框按钮
+						checkTd.appendChild(checkBtn);//将复选框添加到第一列；
+						//将获得的值添加到创建的指定Td中；
+						var tbody = document.getElementById("teacherinfo");
+						var rows = tbody.rows.length;
+						idTd.innerHTML = idTxt;
+						nameTd.innerHTML = nameTxt;
+						//创建个button按钮，添加到操作列；
+						var delBtn = createObj("input");
+						delBtn.type = "button";
+						delBtn.value = "删除"
+						delBtn.setAttribute("teacherid", idTxt);
+						/*
+						 *为新建的delBtn创建监听属性；
+						 */
 
-			delBtn.onclick = function() {
-				delTr(this);
-			};
+						delBtn.onclick = function() {
+							delTr(this);
+						};
 
-			var changeBtn = createObj("input");
-			changeBtn.type = "button";
-			changeBtn.value = "修改";
-			/*
-			 *为新建的changeBtn创建监听属性；
-			 */
-			changeBtn.onclick = function() {
-				modTr(this);
-			}
-			var space = createObj("space");
-			space.innerHTML = " ";
-			dmlTd.appendChild(delBtn);
-			dmlTd.appendChild(space);
-			dmlTd.appendChild(changeBtn);
-			//5将新建的td加入到新建的行中
-			tr.appendChild(checkTd);
-			tr.appendChild(idTd);
-			tr.appendChild(nameTd);
-			tr.appendChild(classTd);
-			tr.appendChild(dmlTd);
-			//6将新建的tr加入到tbody中
-			var tbody = document.getElementById("teacherinfo");
-			tbody.appendChild(tr);
+						var changeBtn = createObj("input");
+						changeBtn.type = "button";
+						changeBtn.value = "修改";
+						changeBtn.setAttribute("teacherid", idTxt);
+						/*
+						 *为新建的changeBtn创建监听属性；
+						 */
+						changeBtn.onclick = function() {
+							modTr(this);
+						}
+						var space = createObj("space");
+						space.innerHTML = " ";
+						dmlTd.appendChild(delBtn);
+						dmlTd.appendChild(space);
+						dmlTd.appendChild(changeBtn);
+						//5将新建的td加入到新建的行中
+						tr.appendChild(checkTd);
+						tr.appendChild(idTd);
+						tr.appendChild(nameTd);
+						tr.appendChild(dmlTd);
+						//6将新建的tr加入到tbody中
+						var tbody = document.getElementById("teacherinfo");
+						tbody.appendChild(tr);
+						swal("成功", "添加教师作成功", "success");
+						$('#emptyteacher').attr("style","display:none");
+						$('#teachers').attr("style","");
+					}
+					if (data == "fail")
+						swal("错误", "添加教师失败，请稍后再试！", "error");
+					if (data == "duplicate")
+						swal("错误", "已经存在教工号为：" + idTxt + "的教师，请检查！", "error");
+				},
+			});
+
 		}
 		var delTr = function(obj) {
-			var flag = window.confirm("确定删除？");
-			if (flag) {
-				var tbody = document.getElementById("teacherinfo");
-				tbody.removeChild(obj.parentNode.parentNode);//this指删除按钮，父节点为当前的td,父节点为当前的tr;
-				//每删除一行，后面的行数要都要减一，解决这个问题的思路：我直接获取执行删除按钮后tbody中的全部行，然后进行重新排列；
-			} else {
-				return;
-			}
+			swal({
+				title : "您确定要删除吗？",
+				text : "您确定要删除这条记录吗？",
+				type : "warning",
+				showCancelButton : true,
+				closeOnConfirm : false,
+				confirmButtonText : "是的，我要删除",
+				confirmButtonColor : "#ec6c62"
+			}, function() {
+				var tr = obj.parentNode.parentNode;
+				var tDs = tr.getElementsByTagName("td");
+				var teacherID = tDs[1].innerHTML;
+				$.ajax({
+					url : "DeleteTeacher",
+					data : {
+						"teacherID" : teacherID
+					},
+					dataType : "json",
+					success : function(data) {
+						if (data == "success") {
+							var tbody = document.getElementById("teacherinfo");
+							tbody.removeChild(obj.parentNode.parentNode);//this指删除按钮，父节点为当前的td,父节点为当前的tr;
+							//每删除一行，后面的行数要都要减一，解决这个问题的思路：我直接获取执行删除按钮后tbody中的全部行，然后进行重新排列；
+							swal("成功", "删除操作成功", "success");
+							judgeempty();
+						}
+						if (data == "fail")
+							swal("错误", "删除操作失败，请稍后再试！", "error");
+					},
+				});
+			});
 		}
 		var modTr = function(obj) {
 			//1.获得隐藏的DIV
@@ -500,7 +593,9 @@ th {
 			//获得需要修改的内容
 			var idTxt = tr.cells[1].innerHTML;
 			var nameTxt = tr.cells[2].innerHTML;
-			var classTxt = tr.cells[3].innerHTML;
+			var originteacherID = obj.getAttribute("teacherid");
+			var tb = document.getElementById("over_tb");
+			tb.setAttribute("teacherID", originteacherID);
 			//5.获得遮罩层的tbody
 			var tb = document.getElementById("over_tb");
 			//6.获得tb中所有的input
@@ -508,7 +603,7 @@ th {
 			//7.往遮罩层中的input填入从表格中取得来的数据
 			inputs[0].value = idTxt;
 			inputs[1].value = nameTxt;
-			inputs[2].value = classTxt;
+			currentobj = obj;
 		}
 		var cancleBtn = function() {
 			//将遮罩层的内容隐藏掉
@@ -524,22 +619,52 @@ th {
 			var inputs = tb.getElementsByTagName("input");
 			var idTxt = inputs[0].value;
 			var nameTxt = inputs[1].value;
-			var classTxt = inputs[2].value;
-			//隐藏遮罩层
-			cancleBtn();
+			var originteacherID = tb.getAttribute("teacherID");
 			//3.获得主页中的数据,将修改的数据填入到主页中,
 			var tbody = document.getElementById("teacherinfo");
 			var rows = tbody.rows.length; //获得所有的行
 			for (var i = 0; i < rows; i++) {
 				var tr = tbody.rows[i];
 				if (tr.cells[1].innerHTML == idTxt) {
-					if (tr.cells[2].innerHTML == nameTxt) {
-						if (tr.cells[3].innerHTML != classTxt) {//判断遮罩层中input的数据与表格中的数据是否相等，不相等就把遮罩层中的数据写入到表格中;
-							tr.cells[3].innerHTML = classTxt;
-						}
+					if (tr != currentobj.parentNode.parentNode) {
+						swal("错误", "已经存在教工号为：" + idTxt + "的教师，请检查！", "error");
+						return;
 					}
 				}
 			}
+			$.ajax({
+				//type:"post",
+				url : "UpdateTeacher",
+				data : {
+					"teacherName" : nameTxt,
+					"teacherID" : originteacherID,
+					"newteacherID" : idTxt
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data == "success") {
+						currentobj.setAttribute("teacherid", idTxt);
+						currentobj.parentNode.childNodes[1].setAttribute(
+								"teacherid", idTxt);
+						swal("成功", "成功修改教师信息！", "success")
+						//隐藏遮罩层
+						cancleBtn();
+						//3.获得主页中的数据,将修改的数据填入到主页中,
+						var tbody = document.getElementById("teacherinfo");
+						var rows = tbody.rows.length; //获得所有的行
+						for (var i = 0; i < rows; i++) {
+							var tr = tbody.rows[i];
+							if (tr.cells[1].innerHTML == originteacherID) {
+								tr.cells[1].innerHTML = idTxt;
+								tr.cells[2].innerHTML = nameTxt;
+							}
+						}
+					}
+					if (data == "fail") {
+						swal("错误", "修改教师信息遇到错误，请稍后再试！", "error")
+					}
+				},
+			});
 		}
 
 		//全选
@@ -575,37 +700,88 @@ th {
 
 		//删除所选
 		var delSel = function() {
-			var flag = window.confirm("确定删除？");
-			if (flag) {
-				//1.获得tbody对象
-				var tbody = document.getElementById("teacherinfo");
-				//2.获得tbody下的input元素
-				var inputs = tbody.getElementsByTagName("input");
-				for (var i = inputs.length - 1; i >= 0; i--) {
-					//3.过滤出checkbox类型
-					if (inputs[i].type == "checkbox") {
-						var input = inputs[i];
-						//4.找出checkbox的所选择的行
-						if (input.checked) { //5.删除已选择的行
-							tbody.removeChild(input.parentNode.parentNode);
+			var teacherIds = "";
+			//1.获得tbody对象
+			var tbody = document.getElementById("teacherinfo");
+			//2.获得tbody下的input元素
+			var inputs = tbody.getElementsByTagName("input");
+			for (var i = inputs.length - 1; i >= 0; i--) {
+				//3.过滤出checkbox类型
+				if (inputs[i].type == "checkbox") {
+					var input = inputs[i];
+					if (input.checked) {
+						var td = input.parentNode.parentNode.childNodes[7];
+						if (td != null) {
+							teacherIds += td.childNodes[1]
+									.getAttribute("teacherid");
+							teacherIds += '/';
+						} else {
+							td = input.parentNode.parentNode.childNodes[3];
+							teacherIds += td.childNodes[0]
+									.getAttribute("teacherid");
+							teacherIds += '/';
 						}
 					}
 				}
 			}
+			swal(
+					{
+						title : "您确定要删除吗？",
+						text : "您确定要删除这条记录吗？",
+						type : "warning",
+						showCancelButton : true,
+						closeOnConfirm : false,
+						confirmButtonText : "是的，我要删除",
+						confirmButtonColor : "#ec6c62"
+					},
+					function() {
+						$
+								.ajax({
+									//type:"post",
+									url : "DeleteTeachers",
+									data : {
+										"teacherIDs" : teacherIds,
+									},
+									dataType : "json",
+									success : function(data) {
+										if (data == "success") {
+											//1.获得tbody对象
+											var tbody = document
+													.getElementById("teacherinfo");
+											//2.获得tbody下的input元素
+											var inputs = tbody
+													.getElementsByTagName("input");
+											for (var i = inputs.length - 1; i >= 0; i--) {
+												//3.过滤出checkbox类型
+												if (inputs[i].type == "checkbox") {
+													var input = inputs[i];
+													//4.找出checkbox的所选择的行
+													if (input.checked) { //5.删除已选择的行
+														tbody
+																.removeChild(input.parentNode.parentNode);
+													}
+												}
+											}
+											swal("成功", "成功删除所选数据！", "success");
+											judgeempty();
+										}
+										if (data == "fail") {
+											swal("错误", "删除出现错误，请稍后重试！", "error");
+										}
+									}
+								});
+					});
+		}
+		function judgeempty(){
+		    var tbody = document.getElementById("teacherinfo");
+			var inputs = tbody.getElementsByTagName("input");
+			if(inputs.length == 0){
+			    $('#teachers').attr("style","display:none");
+			    $('#emptyteacher').attr("style","");
+			}
 		}
 	</script>
-
 	<!-- end: JavaScript-->
-	
-	<script>
-			$.ajax({
-				url: "GetUserName",
-				dataType: "json",
-				success: function(data){
-					$(".name").html(data);
-				}
-			})
-	</script>
 
 </body>
 

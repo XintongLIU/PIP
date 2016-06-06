@@ -5,7 +5,6 @@
 	<class name="Teacher" table="teacher">
 		<cache usage="read-write" /> <!-- 缓存 -->
 		<id name="teacherID" column="teacherID" type="int">
-			<generator class="identity"/>
 		</id>
 		<property name="teacherName" column="teacherName" length="50"
 			type="string" />
