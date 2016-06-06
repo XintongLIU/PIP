@@ -570,6 +570,7 @@ th {
 					</div>
 				</div>
 			</div>
+<<<<<<< Updated upstream
 			<!--End Main Page-->
 
 		</div>
@@ -649,6 +650,27 @@ th {
 		});
 		$('#save').click(function() {
 			//保存分数的代码......
+			var scoreList = $(this).nextSibling;
+			var scoreList = $(scoreList).children;
+			var str = "";
+			var strdeploy = $(scoreList).find("a[id='deploy']").text();
+			var strindex = $(scoreList).find("a[id='index']").text();
+			var strfunction = $(scoreList).find("a[id='function']").text();
+			var strperformance = $(scoreList).find("a[id='performance']").text();
+			var strstress = $(scoreList).find("a[id='stress']").text();
+			var strcode = $(scoreList).find("a[id='code']").text();
+			var strdocument = $(scoreList).find("a[id='document']").text();
+			var str = strdeploy + "/" + strindex+ "/" + strfunction+ "/" + strperformance+ "/" + strstress+ "/" + strcode+ "/" +strdocument;
+			var teamID = getQueryString("teamID");
+			$.ajax({
+				url : "UpdateProjectDetailScore",
+				type: "post",
+				data: {"projectScoreString":str,"teamID":teamID},
+				dataType : "json",
+				success : function(data){
+					alert("修改成功");
+				}
+			})
 		})
 	</script>
 	<script>
@@ -863,5 +885,4 @@ th {
 	</script>
 
 </body>
-
 </html>
