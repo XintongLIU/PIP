@@ -60,9 +60,9 @@ public class ShowProjectDetailAction {
 		
 		List<ProjectScore> projectDetailList  = new ArrayList<ProjectScore>(); 
 		Map map = ActionContext.getContext().getSession();
-		int studentId = (Integer)map.get("userID");
+		Integer studentID = (Integer)map.get("userID");
 //		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
-		projectDetailList = projectDetailStateService.showProjectDetailListByProjectID(1);
+		projectDetailList = projectDetailStateService.showProjectDetailListByStudentID(studentID);
 		
 		for(int i = 0; i < 6; i++){
 			projectDetail.add(projectDetailList.get(i).getProjectState());
@@ -77,9 +77,9 @@ public class ShowProjectDetailAction {
 		score = new ArrayList<Integer>();
 		List<ProjectScore> projectDetailList  = new ArrayList<ProjectScore>(); 	
 		Map map = ActionContext.getContext().getSession();
-		int studentId = (Integer)map.get("userID");
-//		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
-		projectDetailList = projectDetailStateService.showProjectDetailListByProjectID(1);	
+		int studentID = (Integer)map.get("userID");
+		projectDetailList = projectDetailStateService.showProjectDetailList();		//need the student's id
+		projectDetailList = projectDetailStateService.showProjectDetailListByStudentID(studentID);
 		
 		for(int i = 6, j = 0; i < projectDetailList.size(); i++,j++){//
 			projectDetail.add(projectDetailList.get(i).getProjectState());

@@ -8,4 +8,5 @@ public interface IProjectDetailService {
 	List<ProjectScore> showProjectDetailList();
 	void updateProjectDetail(ProjectScore projectScore);
 	List<ProjectScore> showProjectDetailListByProjectID(Integer projectID);
+	List<ProjectScore> showProjectDetailListByStudentID(Integer studentID);
 }
